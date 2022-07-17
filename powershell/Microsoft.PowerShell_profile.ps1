@@ -131,7 +131,7 @@ function poshpoup() {
     $ErrorActionPreference = "Stop"  # Stop the function on first encountered exception
     $profile_path = $PROFILE
     $web_temp_profile_path = $env:TEMP + '\MXML_PowerShell_profile.temp.ps1'
-    $web_url = "https://github.com/maximilionus/maxposh7/raw/master/Microsoft.PowerShell_profile.ps1"
+    $web_url = "https://github.com/maximilionus/configs/raw/master/powershell/Microsoft.PowerShell_profile.ps1"
 
     # Save web version to temp dir
     iwr -Uri $web_url -OutFile $web_temp_profile_path
