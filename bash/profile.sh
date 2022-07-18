@@ -1,13 +1,27 @@
 #!/bin/bash
 
-function video_downscale_720_30 () {
-    ffmpeg.exe -i "$1" -s 1280x720 -filter:v fps=30 "$1_720.mp4"
-}
+function video_rescale () {
+    local source_video_path="${1}"
+    local desired_resolution="${RES:=1280x720}"
+    local desired_framerate=${FRM:=30}
+    local desired_quality=${QLT:=28}
+    local volume_multiplier=${VLM:=1}
+    local additional_args="${ARG}"
 
-function video_to_telegram_sticker() {
-    edited_video_path="./converted_webm"
-    mkdir -p $edited_video_path
-    ffmpeg -i "$1" -framerate 30 -c:v libvpx-vp9 -an -vf scale=512:512 -pix_fmt yuva420p "$edited_video_path/$1_sticker.webm"
+    local output_path="${source_video_path}_${desired_resolution}_${desired_framerate}.mp4"
+
+    if [ "$volume_multiplier" = "1" ]; then
+        local audio_args=("-c:a" "copy")
+    else
+        local audio_args=("-c:a" "aac" "-filter:a" "volume=${volume_multiplier}")
+    fi
+
+    local ffmpeg_params=("-s" "${desired_resolution}" "-filter:v" "fps=${desired_framerate}" "-c:v" "libx264" "-crf" "${desired_quality}")
+    ffmpeg_params+=("${audio_args[@]}""${additional_args}")
+
+    local final_args=("-i" "$source_video_path" "${ffmpeg_params[@]}" "$output_path")
+
+    ffmpeg ${final_args}
 }
 
 function vactiva () {
@@ -22,6 +36,3 @@ function vactiva () {
 
     printf "Python Virtual Environment - Activated\nPYTHON: %s\n" "$(which python)"
 }
-
-
-alias ll="ls -lah"
