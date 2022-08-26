@@ -1,0 +1,55 @@
+#!/bin/bash
+
+source_video_path="${1}"
+
+# Default values
+desired_resolution="1280x720"
+desired_framerate="30"
+desired_quality="28"
+
+# Custom values provided with optional arguments
+while getopts r:f:q:v: opt; do
+    case $opt in
+        r) desired_resolution=$OPTARG;;
+        f) desired_framerate=$OPTARG;;
+        q) desired_quality=$OPTARG;;
+        v) volume_multiplier=${OPTARG};;
+    esac
+done
+
+
+echo "---------"
+echo "$volume_multiplier"
+echo "---------"
+
+output_path="${source_video_path}_${desired_resolution}_${desired_framerate}.mp4"
+
+if [ "$volume_multiplier" = "1" ]; then
+    audio_args=(-c:a "copy")
+else
+    audio_args=(
+        -c:a "aac"
+        -filter:a "volume=${volume_multiplier}"
+    )
+fi
+
+ffmpeg_params=(
+    -s "${desired_resolution}"
+    -filter:v "fps=${desired_framerate}"
+    -c:v "libx264"
+    -crf "${desired_quality}"
+)
+ffmpeg_params+=("${audio_args[@]}")
+
+final_args=(
+    -i "$source_video_path"
+    "${ffmpeg_params[@]}"
+    "$output_path"
+)
+
+# Debug
+echo "---------"
+echo "${final_args[*]}"
+echo "---------"
+
+ffmpeg "${final_args[@]}"
