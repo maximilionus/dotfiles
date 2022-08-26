@@ -1,29 +1,47 @@
 #!/bin/bash
 
-source_video_path="${1}"
+set -e
+#source_video_path="${1}"
 
 # Default values
 desired_resolution="1280x720"
 desired_framerate="30"
 desired_quality="28"
+volume_multiplier="1"
 
-# Custom values provided with optional arguments
-while getopts r:f:q:v: opt; do
+
+function show_help_mesage {
+    echo "usage: video_rescale [OPTIONS] path_to_video"
+    echo "OPTIONS:"
+    echo "  -r      rescale input path to 'WIDTHxHEIGHT', defaults to '1280x720'"
+    echo "  -f      desired framerate value, defaults to 30"
+    echo "  -q      desired quality (CRF), defaults to 28"
+    echo "  -v      audio track volume multiplier, defaults to 1 (original volume)"
+    echo "ENV:"
+    echo "  _V int  set to '1' to enable the verbose mode for debugging purposes, disabled by default"
+}
+
+# Custom values provided with optional keyword arguments
+while getopts ":r:f:q:v:hd:" opt; do
     case $opt in
-        r) desired_resolution=$OPTARG;;
-        f) desired_framerate=$OPTARG;;
-        q) desired_quality=$OPTARG;;
-        v) volume_multiplier=${OPTARG};;
+        r) desired_resolution="$OPTARG";;
+        f) desired_framerate="$OPTARG";;
+        q) desired_quality="$OPTARG";;
+        v) volume_multiplier="$OPTARG";;
+        h) show_help_mesage
+        exit 0;;
+        *) echo "Invalid option -$OPTARG" >&2
+        exit 1
     esac
 done
 
-
-echo "---------"
-echo "$volume_multiplier"
-echo "---------"
+# Input file path processing
+source_video_path=${@:$OPTIND:1}
 
 output_path="${source_video_path}_${desired_resolution}_${desired_framerate}.mp4"
 
+# Audio processing
+# TODO: Handle all audio tracks. Now only the first one being processed and merged to final vid.
 if [ "$volume_multiplier" = "1" ]; then
     audio_args=(-c:a "copy")
 else
@@ -33,6 +51,7 @@ else
     )
 fi
 
+# Construct ffmpeg params list
 ffmpeg_params=(
     -s "${desired_resolution}"
     -filter:v "fps=${desired_framerate}"
@@ -48,8 +67,11 @@ final_args=(
 )
 
 # Debug
-echo "---------"
-echo "${final_args[*]}"
-echo "---------"
+if [[ $_V -eq 1 ]]; then
+    echo "----DEBUG----"
+    echo "[final args list]"
+    echo "${final_args[*]}"
+    echo "----DEBUG----"
+fi
 
 ffmpeg "${final_args[@]}"
