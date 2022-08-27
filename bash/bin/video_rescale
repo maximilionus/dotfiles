@@ -1,14 +1,6 @@
 #!/bin/bash
 
 set -e
-#source_video_path="${1}"
-
-# Default values
-desired_resolution="1280x720"
-desired_framerate="30"
-desired_quality="28"
-volume_multiplier="1"
-
 
 function show_help_mesage {
     echo "usage: video_rescale [OPTIONS] path_to_video"
@@ -20,6 +12,12 @@ function show_help_mesage {
     echo "ENV:"
     echo "  _V int  set to '1' to enable the verbose mode for debugging purposes, disabled by default"
 }
+
+# Default values
+desired_resolution="1280x720"
+desired_framerate="30"
+desired_quality="28"
+volume_multiplier="1"
 
 # Custom values provided with optional keyword arguments
 while getopts ":r:f:q:v:hd:" opt; do
@@ -35,8 +33,12 @@ while getopts ":r:f:q:v:hd:" opt; do
     esac
 done
 
-# Input file path processing
 source_video_path=${@:$OPTIND:1}
+
+if [[ -z "$source_video_path" ]]; then
+    show_help_mesage
+    exit 1
+fi
 
 output_path="${source_video_path}_${desired_resolution}_${desired_framerate}.mp4"
 
