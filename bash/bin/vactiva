@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function vactiva () {
+    if [[ ! -d ".venv" ]] ; then
+        virtualenv .venv
+    fi;
+
+    case "$(uname -s)" in
+        Linux*|Darwin*) source ".venv/bin/activate";;
+        *)              source ".venv/Scripts/activate";;
+    esac;
+
+    printf "Python Virtual Environment - Activated\nPYTHON: %s\n" "$(which python)"
+}
