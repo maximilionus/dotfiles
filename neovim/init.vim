@@ -1,6 +1,6 @@
 call plug#begin()
 
-Plug 'morhetz/gruvbox'
+Plug 'dracula/vim'
 Plug 'vim-airline/vim-airline'
 
 call plug#end()
@@ -10,4 +10,4 @@ set mouse=nv
 set clipboard^=unnamed,unnamedplus
 set guicursor=
 
-autocmd vimenter * ++nested colorscheme gruvbox
+colorscheme dracula
