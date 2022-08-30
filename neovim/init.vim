@@ -11,3 +11,4 @@ set clipboard^=unnamed,unnamedplus
 set guicursor=
 
 colorscheme dracula
+hi Normal guibg=NONE ctermbg=NONE
