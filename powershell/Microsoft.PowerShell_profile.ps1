@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config ~/.oh-my-posh/themes/bubblesextra.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config ~/.oh-my-posh/themes/emodipt-extend.omp.json | Invoke-Expression
 
 Import-Module Terminal-Icons
 Import-Module posh-git
