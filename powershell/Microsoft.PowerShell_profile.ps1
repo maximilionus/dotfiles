@@ -160,4 +160,3 @@ function poshpoup() {
 
 # Alias
 Set-Alias ll ls
-Set-Alias g git
