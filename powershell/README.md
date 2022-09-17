@@ -13,4 +13,4 @@ My personal **Microsoft Powershell 7** profile with special things in it
 
 ### Themes
 - [emodipt-extend](https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/emodipt-extend.omp.json)
-  > Should be placed in `~/.oh-my-posh/themes/` directory
+  > Should be placed in `$PROFILE/Themes/` directory
