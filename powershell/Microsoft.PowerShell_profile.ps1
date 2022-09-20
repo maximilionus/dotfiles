@@ -3,8 +3,7 @@ oh-my-posh init pwsh --config "$(Split-Path $PROFILE)/Themes/emodipt-extend.omp.
 Import-Module Terminal-Icons
 Import-Module posh-git
 
-Set-PSReadLineKeyHandler -Key Tab -Function Complete
-Set-PSReadlineKeyHandler -Key Ctrl+d -Function DeleteCharOrExit
+Set-PSReadLineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
 
 
