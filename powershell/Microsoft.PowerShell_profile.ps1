@@ -1,6 +1,5 @@
 oh-my-posh init pwsh --config "$(Split-Path $PROFILE)/Themes/emodipt-extend.omp.json" | Invoke-Expression
 
-Import-Module Terminal-Icons
 Import-Module posh-git
 
 Set-PSReadLineOption -EditMode Emacs
