@@ -41,46 +41,46 @@ function which([Parameter(Mandatory=$true)]$executable_name) {
     Write-Host (Get-Command $executable_name).Path
 }
 
-function video-rescale(
+function Video-Rescale(
     [Parameter(Mandatory=$true)][String]$source_video_path,
-    [String]$desired_resolution = "1280x720",
-    [String]$desired_framerate = "30",
-    [String]$desired_quality = "28",
-    [String]$volume_multiplier = "1",
-    [String]$additional_args
+    [String]$DesiredResolution = "1280x720",
+    [String]$DesiredFramerate = "60",
+    [String]$DesiredQuality = "28",
+    [String]$VolumeMultiplier = "1",
+    [String]$AdditionalArgs
 ) {
     <#
         .DESCRIPTION
-        Rescale mp4 source video to any resolution using ffmpeg x264 encoder. Result will be saved in the same directory with postfix "_$desired_resolution_$desired_framerate.mp4"
+        Rescale mp4 source video to any resolution using ffmpeg x264 encoder. Result will be saved in the same directory with postfix "_$DesiredResolution_$DesiredFramerate.mp4"
 
         .PARAMETER source_video_path
         Path to source video file that should be converted
 
-        .PARAMETER desired_resolution
+        .PARAMETER DesiredResolution
         Resolution for output media in pixels in format WIDTHxHEIGH
 
-        .PARAMETER desired_framerate
+        .PARAMETER DesiredFramerate
         Framerate (fps) for output media
 
-        .PARAMETER desired_quality
+        .PARAMETER DesiredQuality
         Set output media quality using the CRF. A lower value generally leads to higher quality. The range of the CRF scale is 0–51
 
-        .PARAMETER volume_multiplier
+        .PARAMETER VolumeMultiplier
         Audio tracks volume multiplier using the AAC codec; Default value (1) == no changes to audio tracks codec
 
-        .PARAMETER additional_args
+        .PARAMETER AdditionalArgs
         Additional arguments to be passed to ffmpeg command call
     #>
-    $output_path = $source_video_path + '_' + $desired_resolution + '_' + $desired_framerate + '.mp4'
+    $output_path = $source_video_path + '_' + $DesiredResolution + '_' + $DesiredFramerate + '.mp4'
 
-    if ($volume_multiplier -eq "1") {
+    if ($VolumeMultiplier -eq "1") {
         $audio_args = "-c:a", "copy"
     } else {
-        $audio_args = "-c:a", "aac", "-filter:a", "volume=$volume_multiplier"
+        $audio_args = "-c:a", "aac", "-filter:a", "volume=$VolumeMultiplier"
     }
 
-    $ffmpeg_params = "-s", $desired_resolution, "-filter:v", "fps=$desired_framerate", "-c:v", "libx264", "-crf", $desired_quality
-    $ffmpeg_params += $audio_args += $additional_args.Split(' ')
+    $ffmpeg_params = "-s", $DesiredResolution, "-filter:v", "fps=$DesiredFramerate", "-c:v", "libx264", "-crf", $DesiredQuality
+    $ffmpeg_params += $audio_args += $AdditionalArgs.Split(' ')
 
     ffmpeg.exe -i $source_video_path $ffmpeg_params $output_path
 }
