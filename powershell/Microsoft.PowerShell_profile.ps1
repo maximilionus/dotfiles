@@ -47,7 +47,8 @@ function Video-Rescale(
     [String]$DesiredFramerate = "60",
     [String]$DesiredQuality = "28",
     [String]$VolumeMultiplier = "1",
-    [String]$AdditionalArgs
+    [String]$FromTime,
+    [String]$ToTime
 ) {
     <#
         .DESCRIPTION
@@ -68,19 +69,33 @@ function Video-Rescale(
         .PARAMETER VolumeMultiplier
         Audio tracks volume multiplier using the AAC codec; Default value (1) == no changes to audio tracks codec
 
-        .PARAMETER AdditionalArgs
-        Additional arguments to be passed to ffmpeg command call
+        .PARAMETER FromTime
+        Cut video starting point to this time. Should be provided in second or in format "HH:MM:SS"
+
+        .PARAMETER ToTime
+        Cut video ending point to this time. Should be provided in second or in format "HH:MM:SS"
     #>
     $output_path = $source_video_path + '_' + $DesiredResolution + '_' + $DesiredFramerate + '.mp4'
 
+    # Volume modifiers
     if ($VolumeMultiplier -eq "1") {
         $audio_args = "-c:a", "copy"
     } else {
         $audio_args = "-c:a", "aac", "-filter:a", "volume=$VolumeMultiplier"
     }
 
+    # Time cut modifiers
+    $time_args = @()
+    if ($FromTime -ne "") {
+        $time_args += "-ss", $FromTime
+    }
+
+    if ($ToTime -ne "") {
+        $time_args += "-to", $ToTime
+    }
+
     $ffmpeg_params = "-s", $DesiredResolution, "-filter:v", "fps=$DesiredFramerate", "-c:v", "libx264", "-crf", $DesiredQuality
-    $ffmpeg_params += $audio_args += $AdditionalArgs.Split(' ')
+    $ffmpeg_params += $audio_args += $time_args
 
     ffmpeg.exe -i $source_video_path $ffmpeg_params $output_path
 }
@@ -119,40 +134,6 @@ function rmrf(
     foreach($file in $files_to_remove) {
         Remove-Item -Verbose -Recurse -Force -Confirm:$false -Path $file
     }
-}
-
-function poshpoup() {
-    <#
-        .DESCRIPTION
-        Updater for this powershell profile. Currently based on github-gist link. If any updates available - function will ask to install them. WARNING: Manual powershell profile reload required after updating - `PS> . $PROFILE`
-    #>
-    $ErrorActionPreference = "Stop"  # Stop the function on first encountered exception
-    $profile_path = $PROFILE
-    $web_temp_profile_path = $env:TEMP + '\MXML_PowerShell_profile.temp.ps1'
-    $web_url = "https://github.com/maximilionus/configs/raw/master/powershell/Microsoft.PowerShell_profile.ps1"
-
-    # Save web version to temp dir
-    iwr -Uri $web_url -OutFile $web_temp_profile_path
-
-    # Calculate SHA-256 hashes for installed and downloaded profiles
-    $temp_hash = (Get-FileHash -Algorithm SHA256 $web_temp_profile_path).Hash
-    $installed_hash = (Get-FileHash -Algorithm SHA256 $profile_path).Hash
-
-    # Upgrade procedure
-    if ( $temp_hash -ne $installed_hash ) {
-        $decision = $Host.UI.PromptForChoice('🔃 New updates for this PowerShell profile detected', '❓ Install them?', ('✔️ &Yes', '❌ &No'), 1)
-        if ($decision -eq 0) {
-            cpi -Force -Path $web_temp_profile_path -Destination $profile_path
-            Write-Host -ForegroundColor Green '✅ Powershell profile was successfully upgraded to latest version. To activate the latest changes, you should restart the shell or run "PS> . $PROFILE"'
-        } else {
-            Write-Host -ForegroundColor Red '❌ Updating process was cancelled by user'
-        }
-    } else {
-        Write-Host -ForegroundColor Green "❎ You're up-to-date 👍"
-    }
-
-    # Clean temp files
-    Remove-Item -Force -Confirm:$false $web_temp_profile_path
 }
 
 
