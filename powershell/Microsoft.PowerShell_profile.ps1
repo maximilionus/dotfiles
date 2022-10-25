@@ -100,27 +100,6 @@ function Video-Rescale(
     ffmpeg.exe -i $source_video_path $ffmpeg_params $output_path
 }
 
-function video-to-telegram-sticker(
-    [Parameter(Mandatory=$true)]$source_video_path
-) {
-    <#
-        .DESCRIPTION
-        Convert any video to telegram video sticker (.webm-vp9-30fps-512px)
-
-        .PARAMETER source_video_path
-        Path to source video file that should be converted
-    #>
-    $ErrorActionPreference = "Stop"
-
-    $source_video_dir = Split-Path $source_video_path -Parent
-    $source_video_name = Split-Path $source_video_path -Leaf
-    $edited_video_dir = Join-Path -Path $source_video_dir -Child "converted_webm\"
-
-    New-Item -ItemType Directory -Force -Path $edited_video_dir
-
-    ffmpeg -i $source_video_path -framerate 30 -c:v libvpx-vp9 -an -pix_fmt yuva420p -fs 256K $(Join-Path -Path $edited_video_dir -Child ($source_video_name + '_sticker.webm'))
-}
-
 function rmrf(
     [Parameter(Mandatory=$true)]$files_to_remove
 ) {
