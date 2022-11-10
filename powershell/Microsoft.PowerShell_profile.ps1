@@ -1,5 +1,3 @@
-oh-my-posh init pwsh --config "$(Split-Path $PROFILE)/Themes/emodipt-extend.omp.json" | Invoke-Expression
-
 Import-Module posh-git
 
 Set-PSReadLineOption -EditMode Emacs
@@ -118,3 +116,5 @@ function rmrf(
 
 # Alias
 Set-Alias ll ls
+
+Invoke-Expression (&starship init powershell)
