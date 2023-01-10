@@ -109,7 +109,7 @@ function rmrf(
         Files to be removed, separated by 'space'
     #>
     foreach($file in $files_to_remove) {
-        Remove-Item -Verbose -Recurse -Force -Confirm:$false -Path $file
+        Remove-Item -Recurse -Force -Confirm:$false -Path $file
     }
 }
 
