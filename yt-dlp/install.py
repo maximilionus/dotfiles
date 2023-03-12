@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 CONFIG_DIR: Path = Path.home() / Path(".config")
-SOURCE = __file__ / Path('yt-dlp.conf')
+SOURCE = Path(__file__).parent / Path('yt-dlp.conf')
 LINK = CONFIG_DIR / Path('yt-dlp.conf')
 
 
