@@ -39,4 +39,4 @@ function rmrf(
 # Alias
 Set-Alias ll ls
 
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/amro.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/emodipt-extend.omp.json" | Invoke-Expression
