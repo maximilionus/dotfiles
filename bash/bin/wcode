@@ -1,0 +1,8 @@
+#!/bin/bash
+# Run VS Code in Wayland by default
+
+code \
+--enable-features=UseOzonePlatform \
+--ozone-platform=wayland \
+--enable-features=WaylandWindowDecorations \
+"$@"

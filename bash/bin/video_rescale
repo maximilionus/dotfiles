@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# ! Deprecated
+# Very outdated and requires rework
+
 set -e
 
 function show_help_mesage {
