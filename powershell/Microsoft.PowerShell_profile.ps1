@@ -1,6 +1,7 @@
 Import-Module posh-git
 
-Set-PSReadLineOption -EditMode Emacs
+Set-PSReadlineKeyHandler -Key ctrl+d -Function ViExit
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineOption -BellStyle None
 
 
