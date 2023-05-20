@@ -15,6 +15,8 @@ from pathlib import Path
 source_dir = Path(__file__).parent
 current_platform = platform.system()
 
+print("Detected platform: {}".format(current_platform))
+
 if current_platform in ('Linux', 'Darwin'):
     link_target = Path.home() / Path(".config/mpv")
 elif current_platform == 'Windows':
@@ -24,7 +26,7 @@ else:
     exit()
 
 if link_target.exists():
-    print("Configuration already installed in '{}'".format(link_target))
+    print("Configuration is already installed in '{}'".format(link_target))
     exit()
 
 
