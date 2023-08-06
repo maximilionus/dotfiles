@@ -53,7 +53,7 @@
           {
             "foreground": "#63F08C",
             "style": "plain",
-            "template": "$ ",
+            "template": "◆ ",
             "type": "text"
           }
         ],
