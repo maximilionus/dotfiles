@@ -16,6 +16,9 @@ zstyle ':completion:*' menu select # Move through lists with nav keys
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Case insensitive completion
 autoload -Uz compinit && compinit
 
+# Modify PATH var
+path+=("$HOME/.local/bin")
+
 # Keybinds
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
