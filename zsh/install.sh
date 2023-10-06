@@ -2,14 +2,17 @@
 
 set -e
 
-# Install antigen
 echo "=> Setting up the dependencies."
-curl --create-dirs -L git.io/antigen -o "$HOME/.zsh/antigen.zsh"
+echo -n "--> Installing the Antigen package manager for ZSH: "
+curl --progress-bar --create-dirs \
+  -L git.io/antigen \
+  -o "$HOME/.zsh/antigen.zsh"
 
-# Link the config
+echo "=> Installing the configuration."
+
 target_path=$(realpath "./zshrc")
 link_path="$HOME/.zshrc"
-
+echo -n "--> Linking the ZSH config: "
 ln -sfv $target_path $link_path
 
 echo "=> ZSH configuration successfully installed,"
