@@ -27,7 +27,8 @@ bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 
 # Alias
-alias ll="ls -ah"
+alias ll="ls -lah"
+alias lsa="ls -ah"
 
 # Load/Setup plugins
 source $HOME/.zsh/antigen.zsh
