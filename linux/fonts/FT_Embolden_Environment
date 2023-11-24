@@ -1,2 +1,2 @@
 # Make fonts look more bold and easy to read.
-FREETYPE_PROPERTIES="autofitter:no-stem-darkening=0"
+FREETYPE_PROPERTIES="autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,100,1000,400,1500,300,1550,0"
