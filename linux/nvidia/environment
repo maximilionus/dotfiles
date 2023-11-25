@@ -1,3 +1,0 @@
-# Nvidia tweaks for Gnome DE
-CLUTTER_DEFAULT_FPS=144
-__GL_SYNC_DISPLAY_DEVICE=DP-0
