@@ -1,0 +1,18 @@
+set number
+set updatetime=500
+
+
+call plug#begin()
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
+
+call plug#end()
+
+
+let g:airline_theme='base16'
+
+" vim-gitgutter transparent bg
+highlight! link SignColumn LineNr
