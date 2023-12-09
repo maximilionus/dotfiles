@@ -1,18 +1,21 @@
-set number
-set updatetime=500
-
-
+" vim-plug init
 call plug#begin()
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-
 call plug#end()
 
+" Plugins settings
+"" vim-gitgutter transparent bg
+highlight! link SignColumn LineNr
 
+"" Variables
 let g:airline_theme='base16'
 
-" vim-gitgutter transparent bg
-highlight! link SignColumn LineNr
+
+" User settings
+"" Options
+set number                " Show line numbers
+set updatetime=500        " Refresh timer for all tasks
+set shiftwidth=4 smarttab " Prefer whitespace to tabs
