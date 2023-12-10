@@ -17,6 +17,39 @@ let g:airline_theme='base16'
 
 " User settings
 "" Options
-set number                " Show line numbers
-set updatetime=500        " Refresh timer for all tasks
-set shiftwidth=4 smarttab " Prefer whitespace to tabs
+
+""" Show line numbers
+set number
+
+""" Refresh time in ms
+set updatetime=500
+
+""" Allow unsaved buffers
+set hidden
+
+""" Prefer whitespace to tabs
+set shiftwidth=4 smarttab
+
+" Keybinds
+"" General
+
+""" Write to file
+nnoremap <Leader>w :w<CR>
+
+""" Exit
+nnoremap <Leader>q :q<CR>
+
+""" Remove all trailing whitespace
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+""" Unhighlight search
+noremap <Leader><Space> :nohlsearch<CR>
+
+"" Buffer Navigation
+nnoremap <Leader>n :enew<CR>
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprev<CR>
+nnoremap <Leader>3 :b#<CR>
+nnoremap <Leader>a :only<CR>
+nnoremap <Leader>b :ls<CR>
+nnoremap Q :bd!<CR>
