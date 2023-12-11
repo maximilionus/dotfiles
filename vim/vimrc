@@ -13,14 +13,16 @@ highlight! link SignColumn LineNr
 
 "" Variables
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = '|'
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = '|'
-let g:airline_theme='distinguished'
+let g:airline_left_sep        = ''
+let g:airline_right_sep       = ''
+let g:airline_left_alt_sep    = '|'
+let g:airline_right_alt_sep   = '|'
+let g:airline_theme = 'distinguished'
+let g:airline#extensions#tabline#enabled = 1
 
 
 " User settings
+
 "" Options
 
 """ Show line numbers
@@ -35,8 +37,8 @@ set hidden
 """ Prefer whitespace to tabs
 set shiftwidth=4 smarttab
 
-" Keybinds
-"" General
+
+"" Keybinds
 
 """ Remove all trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -44,7 +46,7 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 """ Unhighlight search
 noremap <Leader><Space> :nohlsearch<CR>
 
-"" Buffer Navigation
+""" Buffer Navigation
 nnoremap <Leader>n :enew<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
