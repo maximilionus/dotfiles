@@ -4,7 +4,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
 " Plugins settings
@@ -39,6 +38,15 @@ set expandtab smarttab
 set shiftwidth=4
 set tabstop=8
 set softtabstop=0
+
+""" Visual clarity
+set list
+set listchars=
+set listchars+=tab:·\ 
+set listchars+=trail:·
+set listchars+=extends:»
+set listchars+=precedes:«
+set listchars+=nbsp:░
 
 
 "" Keybinds
