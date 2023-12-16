@@ -18,6 +18,7 @@ let g:airline_left_alt_sep    = '|'
 let g:airline_right_alt_sep   = '|'
 let g:airline_theme = 'distinguished'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffers_label = ''
 
 
 " User settings
@@ -26,6 +27,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 """ Show line numbers
 set number
+highlight LineNr ctermfg=darkgrey
 
 """ Refresh time in ms
 set updatetime=500
@@ -39,7 +41,7 @@ set shiftwidth=4
 set tabstop=8
 set softtabstop=0
 
-""" Visual clarity
+""" Visual clarity for whitespaces, tabs and other symbols.
 set list
 set listchars=
 set listchars+=tab:·\ 
