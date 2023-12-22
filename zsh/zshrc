@@ -27,7 +27,6 @@ bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 
 # Alias
-alias vim="gvim -v"
 alias ll="ls -lah"
 alias lsa="ls -ah"
 
