@@ -5,7 +5,7 @@ set -e
 echo "=> Setting up the dependencies."
 echo -n "--> Installing the vim-plug package manager for ZSH: "
 curl --progress-bar --create-dirs -L \
-    -o ~/.vim/autoload/plug.vim
+    -o ~/.vim/autoload/plug.vim \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "=> Installing the configuration."
