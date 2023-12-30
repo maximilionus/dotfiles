@@ -1,0 +1,9 @@
+import = [
+    "~/.config/alacritty/themes/themes/carbonfox.toml"
+]
+
+[font]
+size = 12
+
+[font.normal]
+family = "MesloLGSDZ Nerd Font"
