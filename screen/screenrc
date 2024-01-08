@@ -1,0 +1,3 @@
+startup_message off
+term "screen-256color"
+defscrollback 5000
