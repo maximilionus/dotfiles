@@ -14,6 +14,6 @@ ln -sfv $(realpath "./alacritty.toml") $ALACRITTY_CONFIG_DIR
 
 echo "=> Setting up the additions."
 echo "--> Installing additional themes for alacritty: "
-git clone https://github.com/alacritty/alacritty-theme.git "$ALACRITTY_THEMES_DIR"
+git clone --depth 1 https://github.com/alacritty/alacritty-theme.git "$ALACRITTY_THEMES_DIR"
 
 echo "=> Alacritty configuration successfully installed"
