@@ -1,24 +1,12 @@
 " vim-plug init
 call plug#begin()
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 call plug#end()
 
-" Plugins settings
+" Plugins
 "" vim-gitgutter transparent bg
 highlight! link SignColumn LineNr
-
-"" Variables
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep        = ''
-let g:airline_right_sep       = ''
-let g:airline_left_alt_sep    = '|'
-let g:airline_right_alt_sep   = '|'
-let g:airline_theme = 'distinguished'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffers_label = ''
 
 
 " User settings
