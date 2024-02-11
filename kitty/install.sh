@@ -11,6 +11,6 @@ echo "-> Installing the configuration."
 echo "==> Linking the Kitty config:"
 ln -sfv $(realpath "./kitty.conf") $KITTY_CONFIG_DIR
 echo "==> Linking the Kitty theme:"
-ln -sfv $(realpath "./theme.conf") $KITTY_CONFIG_DIR
+ln -sfv $(realpath "./current-theme.conf") $KITTY_CONFIG_DIR
 
 echo "-> Kitty configuration successfully installed"
