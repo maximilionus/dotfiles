@@ -14,7 +14,7 @@ highlight! link SignColumn LineNr
 "" Options
 
 """ Show line numbers
-set number
+set relativenumber
 highlight LineNr ctermfg=darkgrey
 
 """ Refresh time in ms
