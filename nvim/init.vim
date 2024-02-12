@@ -1,12 +1,12 @@
 " vim-plug init
-"call plug#begin()
-"Plug 'airblade/vim-gitgutter'
-"Plug 'tpope/vim-commentary'
-"call plug#end()
-"
+call plug#begin()
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
+call plug#end()
+
 "" Plugins
 """ vim-gitgutter transparent bg
-"highlight! link SignColumn LineNr
+highlight! link SignColumn LineNr
 
 
 " User settings
@@ -17,8 +17,17 @@
 set relativenumber
 highlight LineNr ctermfg=darkgrey
 
-""" Allow unsaved buffers
+""" Refresh time in ms
+set updatetime=500
+
+""" Allow unsaved buffers swap
 set hidden
+
+""" Prefer whitespace to tabs
+set expandtab smarttab
+set shiftwidth=4
+set tabstop=8
+set softtabstop=0
 
 """ Visual clarity for whitespaces, tabs and other symbols.
 set list
