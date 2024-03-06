@@ -1,5 +1,4 @@
-Set-PSReadlineKeyHandler -Key ctrl+d -Function ViExit
-Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadLineOption -EditMode Emacs
 Set-PSReadlineOption -BellStyle None
 
 
