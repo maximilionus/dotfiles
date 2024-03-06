@@ -1,5 +1,3 @@
-Import-Module posh-git
-
 Set-PSReadlineKeyHandler -Key ctrl+d -Function ViExit
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadlineOption -BellStyle None
@@ -20,24 +18,3 @@ function which([Parameter(Mandatory=$true)]$executable_name) {
     #>
     Write-Host (Get-Command $executable_name).Path
 }
-
-function rmrf(
-    [Parameter(Mandatory=$true)]$files_to_remove
-) {
-    <#
-        .DESCRIPTION
-        Unix-style 'rm -rf' command implementation
-
-        .PARAMETER files_to_remove
-        Files to be removed, separated by 'space'
-    #>
-    foreach($file in $files_to_remove) {
-        Remove-Item -Recurse -Force -Confirm:$false -Path $file
-    }
-}
-
-
-# Alias
-Set-Alias ll ls
-
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/spaceship.omp.json" | Invoke-Expression
