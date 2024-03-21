@@ -55,3 +55,7 @@ nnoremap <Leader>3 :b#<CR>
 nnoremap <Leader>a :only<CR>
 nnoremap <Leader>b :ls<CR>
 nnoremap Q :bd!<CR>
+
+""" Spelling check switches
+nnoremap <Leader>l :set spell spelllang=en_us
+nnoremap <Leader><S-l> :set nospell<CR>
