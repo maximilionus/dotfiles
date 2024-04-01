@@ -25,6 +25,9 @@ set updatetime=500
 """ Allow unsaved buffers swap
 set hidden
 
+""" Case insensitive when lowercase, sensitive if any uppercase
+set smartcase
+
 """ Prefer whitespace to tabs
 set expandtab smarttab
 set shiftwidth=4
