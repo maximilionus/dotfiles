@@ -2,6 +2,8 @@
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 call plug#end()
 
 "" Plugins
@@ -48,14 +50,16 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 noremap <Leader><Space> :nohlsearch<CR>
 
 """ Buffer Navigation
-nnoremap <Leader>n :enew<CR>
+" Some actions split to Telescope
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
-nnoremap <Leader>3 :b#<CR>
-nnoremap <Leader>a :only<CR>
-nnoremap <Leader>b :ls<CR>
 nnoremap Q :bd!<CR>
 
 """ Spelling check switches
 nnoremap <Leader>l :set spell spelllang=en_us
 nnoremap <Leader><S-l> :set nospell<CR>
+
+""" Telescope plugin
+nnoremap <leader>o <cmd>Telescope find_files<cr>
+nnoremap <leader>f <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
