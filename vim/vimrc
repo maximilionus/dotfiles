@@ -1,7 +1,6 @@
 " vim-plug init
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-commentary'
 call plug#end()
 
 " Plugins
