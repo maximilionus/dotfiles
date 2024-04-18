@@ -1,4 +1,3 @@
--- Keybindings
 -- Unhighlight search
 vim.keymap.set('n', '<Leader><Space>', ':nohlsearch<CR>')
 
