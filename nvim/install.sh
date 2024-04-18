@@ -4,14 +4,10 @@ set -e
 
 CONFIG_DIR=~/.config/nvim
 
-echo "-> Installing the Neovim configuration."
+echo "-> Installing the Neovim lua configuration"
+
 mkdir -p -v "$CONFIG_DIR"
-
-target_path=$(realpath "./init.vim")
-ln -sfv $target_path $CONFIG_DIR
-
-echo "-> Installing the plugin manager."
-curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs --progress-bar \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -sfv $(realpath "./init.lua") $CONFIG_DIR
+ln -sfv $(realpath "./lua") $CONFIG_DIR
 
 echo "-> Neovim configuration successfully installed"
