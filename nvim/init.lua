@@ -18,4 +18,4 @@ require("options")
 require("keybindings")
 
 -- Theme
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "catppuccin-macchiato"
