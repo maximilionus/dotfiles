@@ -16,7 +16,4 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 require("options")
 require("keybindings")
-
--- Theme
-vim.opt.background = "dark"
-vim.cmd.colorscheme "oxocarbon"
+require("theme")
