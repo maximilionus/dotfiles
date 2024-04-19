@@ -18,4 +18,5 @@ require("options")
 require("keybindings")
 
 -- Theme
-vim.cmd.colorscheme "catppuccin-macchiato"
+vim.opt.background = "dark"
+vim.cmd.colorscheme "oxocarbon"
