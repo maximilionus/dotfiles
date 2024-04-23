@@ -17,7 +17,10 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Case insensitive comple
 autoload -Uz compinit && compinit
 
 # Modify PATH var
-path+=("$HOME/.local/bin")
+path+=(
+    "$HOME/.local/bin"
+    "$HOME/.cargo/bin"
+)
 
 # Keybinds
 bindkey "^[[1;3C" forward-word
