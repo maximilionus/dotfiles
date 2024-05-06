@@ -2,6 +2,9 @@ import = [
     "~/.config/alacritty/theme.toml"
 ]
 
+[shell]
+program = "tmux"
+
 [font]
 size = 12
 
