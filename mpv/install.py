@@ -12,26 +12,29 @@ import platform
 from pathlib import Path
 
 
-source_dir = Path(__file__).parent
 current_platform = platform.system()
+source_dir = Path(__file__).parent
+source_files = ('mpv.conf', 'input.conf')
 
 print("Detected platform: {}".format(current_platform))
-
 if current_platform in ('Linux', 'Darwin'):
-    link_target = Path.home() / Path(".config/mpv")
+    link_dir = Path.home() / Path(".config/mpv")
 elif current_platform == 'Windows':
-    link_target = Path.home() / Path("AppData/Roaming/mpv")
+    link_dir = Path.home() / Path("AppData/Roaming/mpv")
 else:
     print("Platform is not supported")
     exit()
 
-if link_target.exists():
-    print("Configuration is already installed in '{}'".format(link_target))
+if link_dir.exists():
+    print("Configuration is already installed in '{}'".format(link_dir))
     exit()
 
-
 try:
-    link_target.symlink_to(source_dir)
-    print("Successfully created the symlink to '{}' in '{}'".format(source_dir, link_target))
-except Exception:
-    print("Can not create the link. Run the script with elevated privileges or ensure that user is allowed to create symlinks.")
+    link_dir.mkdir()
+    for file in source_files:
+        source_path = source_dir / file
+        link_path = link_dir / file
+        link_path.symlink_to(source_path)
+        print("Successfully created the symlink to '{}' in '{}'".format(source_path, link_path))
+except Exception as e:
+    print("Can not install the configuration, reason: \"{}\"".format(e))
