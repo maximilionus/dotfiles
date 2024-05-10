@@ -1,6 +1,6 @@
 """
 MPV personal config installation script.
-Run the script with elevated privileges or ensure that user is allowed to create symlinks!
+Ensure that user is allowed to create symlinks!
 
 Supported platforms: Linux, macOS, Windows
 
