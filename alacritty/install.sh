@@ -11,6 +11,7 @@ echo "-> Installing the configuration."
 echo "==> Linking the Alacritty config:"
 ln -sfv $(realpath "./alacritty.toml") $CONFIG_DIR
 echo "==> Linking the themes:"
-ln -sfv $(realpath "./theme.toml") $CONFIG_DIR
+ln -sfv $(realpath "./theme_dark.toml") $CONFIG_DIR
+ln -sfv $(realpath "./theme_light.toml") $CONFIG_DIR
 
 echo "-> Alacritty configuration successfully installed"
