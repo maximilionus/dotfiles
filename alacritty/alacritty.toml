@@ -1,5 +1,5 @@
 import = [
-    "~/.config/alacritty/theme_dark.toml"
+    "~/.config/alacritty/theme_selected.toml"
 ]
 
 [shell]
