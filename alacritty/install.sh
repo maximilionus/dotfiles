@@ -22,6 +22,6 @@ ln -sfv ./theme_dark.toml theme_selected.toml
 cd -
 
 echo "==> Linking the scripts:"
-ln -sfv $(realpath "./scripts/switch_theme.sh") "$SCRIPTS_DIR/alacritty_switch_theme.sh"
+ln -sfv $(realpath "./scripts/switch_theme.sh") "$SCRIPTS_DIR/alacritty_switch_theme"
 
 echo "-> Alacritty configuration successfully installed"
