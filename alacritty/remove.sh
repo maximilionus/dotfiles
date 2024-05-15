@@ -10,6 +10,9 @@ echo "==> Removing the configuration directory:"
 rm -rfv "$CONFIG_DIR"
 
 echo "==> Removing the scripts:"
-rm -rfv "$SCRIPTS_DIR/alacritty_switch_theme"
+
+for file in ./scripts/*.sh; do
+    rm -rfv "$SCRIPTS_DIR/$(basename $file .sh)"
+done
 
 echo "-> Alacritty configuration successfully removed"
