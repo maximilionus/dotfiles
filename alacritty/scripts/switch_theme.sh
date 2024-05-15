@@ -13,8 +13,8 @@ fi
 cd "$CONFIG_DIR"
 if [ "$THEME_SELECTED" -ef "$THEME_DARK" ]; then
     echo "Switching Alacritty theme to the light mode."
-    ln -sfv "./$THEME_LIGHT" "$THEME_SELECTED"
+    ln -sf "./$THEME_LIGHT" "$THEME_SELECTED"
 else
     echo "Switching Alacritty theme to the dark mode."
-    ln -sfv "./$THEME_DARK" "$THEME_SELECTED"
+    ln -sf "./$THEME_DARK" "$THEME_SELECTED"
 fi
