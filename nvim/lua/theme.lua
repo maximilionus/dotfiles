@@ -9,5 +9,9 @@ if string.find(gnome_prefers, 'default') then
 else
     -- Dark
     -- Also used as a fallback for environments other than Gnome
-    vim.cmd.colorscheme "moonfly"
+    vim.cmd.colorscheme "catppuccin-macchiato"
 end
+
+-- Transparent background
+vim.api.nvim_set_hl(0, "Normal", { bg=none })
+vim.api.nvim_set_hl(0, "NonText", { bg=none })
