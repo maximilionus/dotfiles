@@ -1,4 +1,4 @@
-local gnome_prefers = vim.fn.system {'gsettings', 'get', 'org.gnome.desktop.interface', 'color-scheme'}
+local _, gnome_prefers = pcall(vim.fn.system, {'gsettings', 'get', 'org.gnome.desktop.interface', 'color-scheme'})
 
 if string.find(gnome_prefers, 'default') then
     -- Light
