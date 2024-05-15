@@ -51,7 +51,7 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 
 # Special entries for Alacritty terminal
-if [ ! -z "$ALACRITTY_TERM" ]; then
+if [ ! -z "$ALACRITTY_TERM" ] && command -v alacritty_theme_match_gnome &> /dev/null; then
     alacritty_theme_match_gnome > /dev/null 2>&1
 fi
 
