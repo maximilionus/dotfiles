@@ -34,9 +34,13 @@ if [ -z "$1" ]; then
 else
     # Switch to provided value
     if [ "$1" == "light" ]; then
-        set_light
+        if [ "$THEME_SELECTED" -ef "$THEME_DARK" ]; then
+            set_light
+        fi
     elif [ "$1" == "dark" ]; then
-        set_dark
+        if [ "$THEME_SELECTED" -ef "$THEME_LIGHT" ]; then
+            set_dark
+        fi
     fi
 
 fi
