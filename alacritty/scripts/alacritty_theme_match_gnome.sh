@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_THEME_SWITCHER="alacritty_switch_theme"
+SCRIPT_THEME_SWITCHER="alacritty_theme_switch"
 
 # Checks
 if ! command -v gsettings &> /dev/null; then

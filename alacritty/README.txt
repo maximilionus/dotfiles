@@ -5,9 +5,13 @@ Features
 --------
 - Multiplexer (tmux) on app start. Closing window from gui WILL NOT exit the
   tmux session, be aware.
-- Live theme switching. Add '~/.local/bin' to $PATH and execute
-  'alacritty_switch_theme' to switch light and dark theme. This setting is saved
+- Automatic theme switching. Add '~/.local/bin' to $PATH and execute
+  'alacritty_theme_switch' to switch light and dark theme. This setting is saved
   between sessions.
+- GNOME DE scheme matching script in combination with zsh entries will set the
+  color scheme depending on the current user scheme (light or dark). This
+  feature is highly tied with zsh shell initialization script from this repo for
+  now.
 
 Install
 -------
