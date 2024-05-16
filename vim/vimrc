@@ -43,6 +43,9 @@ set listchars+=nbsp:░
 
 "" Keybinds
 
+""" Set leader key
+let mapleader=" "
+
 """ Remove all trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
