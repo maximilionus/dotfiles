@@ -15,3 +15,8 @@ vim.opt.softtabstop = 0
 
 -- Show whitespace, tabs
 vim.opt.list = true
+vim.opt.listchars = {
+    trail = '·',
+    tab = '> ',
+    nbsp = '␣'
+}
