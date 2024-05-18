@@ -1,10 +1,10 @@
 return {
-    "brenoprata10/nvim-highlight-colors",
+    'brenoprata10/nvim-highlight-colors',
     opts = {
-        render = "virtual",
-        virtual_symbol = "●",
+        render = 'virtual',
+        virtual_symbol = '●',
     },
     setup = function(PluginSpec, opts)
-        require("nvim-highlight-colors").setup(args)
+        require('nvim-highlight-colors').setup(args)
     end
 }

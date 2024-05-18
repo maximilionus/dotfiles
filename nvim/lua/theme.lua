@@ -14,11 +14,11 @@ end
 
 -- Set theme
 if selected_scheme == 'light' then
-    vim.cmd.colorscheme "catppuccin-latte"
+    vim.cmd.colorscheme 'catppuccin-latte'
 else
-    vim.cmd.colorscheme "catppuccin-macchiato"
+    vim.cmd.colorscheme 'catppuccin-macchiato'
 end
 
 -- Transparent background
-vim.api.nvim_set_hl(0, "Normal", { bg=none })
-vim.api.nvim_set_hl(0, "NonText", { bg=none })
+vim.api.nvim_set_hl(0, 'Normal', { bg=none })
+vim.api.nvim_set_hl(0, 'NonText', { bg=none })
