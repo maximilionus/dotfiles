@@ -4,8 +4,11 @@ vim.opt.relativenumber = true
 -- Allow unsaved buffers switch
 vim.opt.hidden = true
 
--- Prefer spaces to tabs
+-- Case-insensitive search
 vim.opt.smartcase = true
+vim.opt.ignorecase = true
+
+-- Prefer spaces to tabs
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 
@@ -17,6 +20,6 @@ vim.opt.softtabstop = 0
 vim.opt.list = true
 vim.opt.listchars = {
     trail = '·',
-    tab = '> ',
+    tab = '» ',
     nbsp = '␣'
 }
