@@ -1,5 +1,5 @@
 -- Unhighlight search
-vim.keymap.set('n', '<leader><Space>', ':nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', ':nohlsearch<CR>')
 
 -- Buffer Navigation
 --- Some actions split to Telescope

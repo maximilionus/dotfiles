@@ -50,7 +50,7 @@ let mapleader=" "
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 """ Unhighlight search
-noremap <Leader><Space> :nohlsearch<CR>
+nnoremap <Esc> :nohlsearch<CR>
 
 """ Buffer Navigation
 nnoremap <Leader>n :enew<CR>
