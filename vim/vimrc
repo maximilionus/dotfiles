@@ -22,6 +22,9 @@ set updatetime=500
 """ Allow unsaved buffers
 set hidden
 
+""" Disable registers caching
+set viminfo="0"
+
 """ Case insensitive when lowercase, sensitive if any uppercase
 set smartcase
 
