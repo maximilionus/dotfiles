@@ -4,6 +4,9 @@ vim.opt.relativenumber = true
 -- Allow unsaved buffers switch
 vim.opt.hidden = true
 
+-- Disable registers caching
+vim.opt.shada = ""
+
 -- Case-insensitive search
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
