@@ -13,5 +13,5 @@ ALACRITTY_TERM = "true"
 size = 12
 
 [window]
-dimensions = { columns = 120, lines = 50 }
+dimensions = { columns = 120, lines = 45 }
 title = "Terminal"
