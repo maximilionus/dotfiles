@@ -19,7 +19,7 @@ done
 echo "  > System scripts:"
 echo "    Root required for this action."
 for file in ./scripts/system/*.sh; do
-    sudo rm -rfv "$SCRIPTS_SYS_DIR/$file"
+    sudo rm -rfv "$SCRIPTS_SYS_DIR/$(basename $file)"
 done
 
 echo " > Alacritty configuration successfully removed"
