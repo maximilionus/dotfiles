@@ -22,4 +22,4 @@ for file in ./scripts/system/*.sh; do
     sudo rm -rfv "$SCRIPTS_SYS_DIR/$(basename $file)"
 done
 
-echo " > Alacritty configuration successfully removed"
+echo "> Alacritty configuration successfully removed"
