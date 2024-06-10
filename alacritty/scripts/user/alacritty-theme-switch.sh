@@ -47,11 +47,9 @@ if [ ! -d "$CONFIG_DIR" ]; then
     exit 1
 fi
 
-if [ -z "$1" ]; then
-    set_autoswitch
-elif [ "$1" == "light" ]; then
-    set_light
-elif [ "$1" == "dark" ]; then
-    set_dark
-fi
-
+case "$1" in
+    light|l) set_light ;;
+    dark|d)  set_dark ;;
+    "")      set_autoswitch ;;
+    *)       echo "Unknown command"; exit 1 ;;
+esac
