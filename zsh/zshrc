@@ -14,10 +14,14 @@ SAVEHIST=1000
 setopt autocd beep extendedglob nomatch notify
 bindkey -e
 
-# Completion Options
-zstyle ':completion:*' menu select # Move through lists with nav keys
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Case insensitive completion
 autoload -Uz compinit && compinit
+# Completion Options
+## Move through lists with nav keys
+zstyle ':completion:*' menu select
+
+## Case insensitive completion
+zstyle ':completion:*' matcher-list '' \
+    'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # VI mode
 bindkey -v
