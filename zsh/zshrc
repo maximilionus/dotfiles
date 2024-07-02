@@ -9,6 +9,7 @@ fi
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+setopt histignorespace
 
 # Basic options
 setopt autocd beep extendedglob nomatch notify
