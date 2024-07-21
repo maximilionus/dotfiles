@@ -1,22 +1,20 @@
-local selected_scheme = 'dark'
-
--- Default detection
-if vim.o.background == 'light' then
-    selected_scheme = vim.o.background
-end
+local detected_scheme = ''
 
 -- GNOME DE detection
 local _, gnome_prefers = pcall(vim.fn.system,
     {'gsettings', 'get', 'org.gnome.desktop.interface', 'color-scheme'})
+
 if string.find(gnome_prefers, 'default') then
-    selected_scheme = 'light'
+    detected_scheme = 'light'
+else
+    detected_scheme = 'dark'
 end
 
 -- Set theme
-if selected_scheme == 'light' then
-    vim.cmd.colorscheme 'catppuccin-latte'
-else
-    vim.cmd.colorscheme 'catppuccin-macchiato'
+if detected_scheme == 'light' then
+    vim.o.background = 'light'
+elseif detected_scheme == 'dark' then
+    vim.o.background = 'dark'
 end
 
 -- Transparent elements
