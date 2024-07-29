@@ -1,9 +1,0 @@
-[Unit]
-Description=Fix the motherboard-related not working suspend feature under Wayland sessions
-
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c "echo GPP0 > /proc/acpi/wakeup"
-
-[Install]
-WantedBy=multi-user.target
