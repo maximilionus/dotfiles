@@ -1,34 +1,28 @@
-# (Github Dark High Contrast) Colors for Alacritty
-# With modified background color.
+# Gnome (Gnome Terminal Default)
 
 # Default colors
 [colors.primary]
 background = '#0a0a0a'
-foreground = '#f0f3f6'
-
-# Cursor colors
-[colors.cursor]
-text = '#0a0c10'
-cursor = '#f0f3f6'
+foreground = '#ffffff'
 
 # Normal colors
 [colors.normal]
-black = '#7a828e'
-red = '#ff9492'
-green = '#26cd4d'
-yellow = '#f0b72f'
-blue = '#71b7ff'
-magenta = '#cb9eff'
-cyan = '#39c5cf'
-white = '#d9dee3'
+black      = '#171421'
+red        = '#c01c28'
+green      = '#26a269'
+yellow     = '#a2734c'
+blue       = '#12488b'
+magenta    = '#a347ba'
+cyan       = '#2aa1b3'
+white      = '#d0cfcc'
 
 # Bright colors
 [colors.bright]
-black = '#9ea7b3'
-red = '#ffb1af'
-green = '#4ae168'
-yellow = '#f7c843'
-blue = '#91cbff'
-magenta = '#cb9eff'
-cyan = '#39c5cf'
-white = '#d9dee3'
+black      = '#5e5c64'
+red        = '#f66151'
+green      = '#33d17a'
+yellow     = '#e9ad0c'
+blue       = '#2a7bde'
+magenta    = '#c061cb'
+cyan       = '#33c7de'
+white      = '#ffffff'
