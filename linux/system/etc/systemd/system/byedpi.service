@@ -3,7 +3,7 @@ Description=ByeDPI proxy server
 After=network.target
 
 [Service]
-ExecStart=ciadpi --disorder 1 --auto=torst --tlsrec 1+s
+ExecStart=ciadpi --port 4080 --disorder 1 --auto=torst --tlsrec 1+s
 Restart=always
 
 [Install]
