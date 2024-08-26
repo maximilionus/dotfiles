@@ -1,0 +1,10 @@
+[Unit]
+Description=ByeDPI proxy server
+After=network.target
+
+[Service]
+ExecStart=ciadpi --disorder 1 --auto=torst --tlsrec 1+s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
