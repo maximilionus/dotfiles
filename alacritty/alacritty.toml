@@ -6,7 +6,6 @@ import = [
 program = "tmux"
 
 [env]
-TERM = "xterm-256color"
 ALACRITTY_TERM = "true"
 
 [font]
