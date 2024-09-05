@@ -1,6 +1,10 @@
 # Script will create 2 services to ensure that gnome-shell is suspended
 # **before** the NVIDIA driver, so it will not make any resume calls preventing
 # the correct system suspend procedure.
+#
+# For the 555 NVIDIA proprietary driver.
+#
+# Note: 560 does not require this fix anymore, looks like it's fixed for now.
 
 set -e
 
