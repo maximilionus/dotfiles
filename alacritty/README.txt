@@ -19,5 +19,5 @@ Install
 2. Execute the './install.sh' script as root.
 
 Uninstall
-------
+---------
 1. Execute the './uninstall.sh' script.
