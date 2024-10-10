@@ -6,7 +6,7 @@ SERVICE="byedpi.service"
 echo "-> Installing ByeDPI configuration"
 cp -v $SERVICE /etc/systemd/system
 cp -v byedpi.conf /etc/
-cp -v byedpictl.sh /usr/local/bin
+cp -v byedpictl.sh /usr/local/bin/byedpictl
 
 echo "-> Activating services"
 systemctl enable --now $SERVICE
