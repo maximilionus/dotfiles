@@ -7,14 +7,18 @@ set_mode() {
         # self redirection.
         redirect)
             sudo iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner root \
-                --dport 443 -j REDIRECT --to-port 4080
+                -j REDIRECT --to-port 4080
+            sudo iptables -t nat -A OUTPUT -p udp -m owner ! --uid-owner root \
+                -j REDIRECT --to-port 4080
             echo "Successfully changed the mode to redirect."
             echo "All traffic will now be automatically redirected to proxy."
             ;;
 
         proxy)
             sudo iptables -t nat -D OUTPUT -p tcp -m owner ! --uid-owner root \
-                --dport 443 -j REDIRECT --to-port 4080
+                -j REDIRECT --to-port 4080
+            sudo iptables -t nat -D OUTPUT -p udp -m owner ! --uid-owner root \
+                -j REDIRECT --to-port 4080
             echo "Successfully changed the mode to proxy (default)"
             echo "Manual user connection to proxy server is required."
             ;;
