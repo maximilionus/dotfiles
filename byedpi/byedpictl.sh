@@ -1,6 +1,21 @@
 #!/bin/bash
 set -e
 
+show_help() {
+    cat <<EOF
+$0
+
+COMMANDS:
+    mode [redirect,proxy]:
+        Set routing to redirect all TCP/UDP traffic to local proxy, or use it
+        as a plain SOCKS5 proxy server, requiring manual connection from user.
+
+        Default: proxy mode.
+    help:
+        Show this message and exit.
+EOF
+}
+
 set_mode() {
     case $1 in
         # Setting iptables rules as root is required to prevent the traffic
@@ -29,10 +44,14 @@ set_mode() {
 }
 
 case $1 in
+    help)
+        show_help
+        ;;
     mode)
         set_mode $2
         ;;
     *)
-        echo "Error: Invalid argument: \"$1\"."
+        echo "Invalid argument $1"
+        echo "Use \"help\" command."
         exit 1
 esac
