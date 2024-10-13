@@ -7,8 +7,8 @@ $0
 
 COMMANDS:
     mode [redirect,proxy]:
-        Set routing to redirect all TCP/UDP traffic to local proxy, or use it
-        as a plain SOCKS5 proxy server, requiring manual connection from user.
+        Set routing to redirect all TCP traffic to local proxy, or use it as a
+        plain SOCKS5 proxy server, requiring manual connection from user.
 
         Default: proxy mode.
     help:
@@ -23,16 +23,12 @@ set_mode() {
         redirect)
             sudo iptables -t nat -A OUTPUT -p tcp -m owner ! --uid-owner root \
                 -j REDIRECT --to-port 4080
-            sudo iptables -t nat -A OUTPUT -p udp -m owner ! --uid-owner root \
-                -j REDIRECT --to-port 4080
             echo "Successfully changed the mode to redirect."
-            echo "All traffic will now be automatically redirected to proxy."
+            echo "All TCP traffic will now be automatically redirected to proxy."
             ;;
 
         proxy)
             sudo iptables -t nat -D OUTPUT -p tcp -m owner ! --uid-owner root \
-                -j REDIRECT --to-port 4080
-            sudo iptables -t nat -D OUTPUT -p udp -m owner ! --uid-owner root \
                 -j REDIRECT --to-port 4080
             echo "Successfully changed the mode to proxy (default)"
             echo "Manual user connection to proxy server is required."
