@@ -28,11 +28,10 @@ cmd_tun() {
             ;;
 
         false)
-            sudo kill -9 $(pidof hev-socks5-tunnel)
-
             sudo ip rule del uidrange 1001-1001 lookup 110 pref 28000
             sudo ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110
             sudo ip route del default via 172.20.0.1 dev byedpi-tun metric 1
+            sudo kill -9 $(pidof hev-socks5-tunnel)
 
             echo "Successfully changed the mode to proxy (default)"
             echo "Manual user connection to proxy server is required."
