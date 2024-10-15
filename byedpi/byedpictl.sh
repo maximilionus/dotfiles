@@ -19,19 +19,20 @@ EOF
 cmd_tun() {
     case $1 in
         true)
-            sudo hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml &
-            sudo ip rule add uidrange 1001-1001 lookup 110 pref 28000 || true
-            sudo ip route add default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
-            sudo ip route add default via 172.20.0.1 dev byedpi-tun metric 1 || true
+            nohup hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml > /dev/null 2>&1 &
+            sleep 1 # Ensure that socks5 tunnel is ready
+            ip rule add uidrange 1001-1001 lookup 110 pref 28000 || true
+            ip route add default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
+            ip route add default via 172.20.0.1 dev byedpi-tun metric 1 || true
 
             echo "Successfully changed the mode to full traffic tunneling."
             ;;
 
         false)
-            sudo ip rule del uidrange 1001-1001 lookup 110 pref 28000
-            sudo ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110
-            sudo ip route del default via 172.20.0.1 dev byedpi-tun metric 1
-            sudo kill -9 $(pidof hev-socks5-tunnel)
+            ip rule del uidrange 1001-1001 lookup 110 pref 28000
+            ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110
+            ip route del default via 172.20.0.1 dev byedpi-tun metric 1
+            killall hev-socks5-tunnel
 
             echo "Successfully changed the mode to proxy (default)"
             echo "Manual user connection to proxy server is required."
