@@ -29,10 +29,10 @@ cmd_tun() {
             ;;
 
         false)
-            ip rule del uidrange 1001-1001 lookup 110 pref 28000
-            ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110
-            ip route del default via 172.20.0.1 dev byedpi-tun metric 1
-            killall hev-socks5-tunnel
+            ip rule del uidrange 1001-1001 lookup 110 pref 28000 || true
+            ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
+            ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
+            killall hev-socks5-tunnel || true
 
             echo "Successfully changed the mode to proxy (default)"
             echo "Manual user connection to proxy server is required."
