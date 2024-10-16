@@ -6,42 +6,51 @@ cmd_help() {
 $0
 
 COMMANDS:
-    tun <bool>:
+    tun <start|stop|restart>
         Set routing to tunnel all traffic to local proxy, or use a plain SOCKS5
         proxy server, requiring manual connection from user.
-
-        Default: false.
-    help:
+    help
         Show this message and exit.
 EOF
 }
 
 cmd_tun() {
     case $1 in
-        true)
-            nohup hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml > /dev/null 2>&1 &
-            sleep 1 # Ensure that socks5 tunnel is ready
-            ip rule add uidrange 1001-1001 lookup 110 pref 28000 || true
-            ip route add default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
-            ip route add default via 172.20.0.1 dev byedpi-tun metric 1 || true
-
+        start)
+            start_tunneling
             echo "Successfully changed the mode to full traffic tunneling."
             ;;
-
-        false)
-            ip rule del uidrange 1001-1001 lookup 110 pref 28000 || true
-            ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
-            ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
-            killall hev-socks5-tunnel || true
-
+        stop)
+            stop_tunneling
             echo "Successfully changed the mode to proxy (default)"
             echo "Manual user connection to proxy server is required."
             ;;
-
+        restart)
+            stop_tunneling
+            start_tunneling
+            echo "Tunnel successfully restarted."
+            ;;
         *)
             echo "Error: Invalid mode: \"$1\"."
-            echo "Choose from \"redirect\" and \"proxy\"."
     esac
+}
+
+start_tunneling() {
+    nohup hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml > /dev/null 2>&1 &
+    # Ensure that socks5 tunnel is ready using a small delay.
+    # TODO: Need more robust solution here, grep-ing through 'ip link' should
+    #       do the job.
+    sleep 1
+    ip rule add uidrange 1001-1001 lookup 110 pref 28000 || true
+    ip route add default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
+    ip route add default via 172.20.0.1 dev byedpi-tun metric 1 || true
+}
+
+stop_tunneling() {
+    ip rule del uidrange 1001-1001 lookup 110 pref 28000 || true
+    ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
+    ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
+    killall hev-socks5-tunnel || true
 }
 
 case $1 in
