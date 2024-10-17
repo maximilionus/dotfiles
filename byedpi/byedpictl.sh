@@ -36,6 +36,9 @@ cmd_tun() {
 }
 
 start_tunneling() {
+    nohup su - byedpi -s /bin/bash -c 'ciadpi --ip 127.0.0.1 --port 4080 \
+        --udp-fake=2 --oob=4+s \
+        --auto=torst --timeout=3 \' > /dev/null 2>&1 &
     nohup hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml > /dev/null 2>&1 &
     # Ensure that socks5 tunnel is ready using a small delay.
     # TODO: Need more robust solution here, grep-ing through 'ip link' should
@@ -50,6 +53,7 @@ stop_tunneling() {
     ip rule del uidrange 1001-1001 lookup 110 pref 28000 || true
     ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
     ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
+    killall ciadpi || true
     killall hev-socks5-tunnel || true
 }
 
