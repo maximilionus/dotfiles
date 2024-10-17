@@ -44,13 +44,16 @@ start_tunneling() {
     # TODO: Need more robust solution here, grep-ing through 'ip link' should
     #       do the job.
     sleep 1
-    ip rule add uidrange 1001-1001 lookup 110 pref 28000 || true
+
+    user_id=$(id -u byedpi)
+    ip rule add uidrange $user_id-$user_id lookup 110 pref 28000 || true
     ip route add default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
     ip route add default via 172.20.0.1 dev byedpi-tun metric 1 || true
 }
 
 stop_tunneling() {
-    ip rule del uidrange 1001-1001 lookup 110 pref 28000 || true
+    user_id=$(id -u byedpi)
+    ip rule del uidrange $user_id-$user_id lookup 110 pref 28000 || true
     ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
     ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
     killall ciadpi || true
