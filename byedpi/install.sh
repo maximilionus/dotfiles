@@ -13,7 +13,7 @@ trap 'rm -rf -- "$TMP_DIR" && echo "-> Temporary directory $TMP_DIR wiped."' EXI
 
 echo "-> Preparing"
 mkdir -vp "$CONF_DIR"
-id -u byedpi &>/dev/null || sudo useradd -M -s /bin/false byedpi
+id -u byedpi &>/dev/null || sudo useradd -r byedpi
 
 echo "-> Downloading dependencies"
 curl -L -o "$TMP_DIR/ciadpi.tar.gz" \
