@@ -43,25 +43,32 @@ start_tunneling() {
 --udp-fake=2 --oob=2 --md5sig \
 --auto=torst --timeout=3" > /tmp/byedpi/ciadpi.log 2>&1 &
     nohup hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml > /tmp/byedpi/hev-socks5-tunnel.log 2>&1 &
-    # Ensure that socks5 tunnel is ready using a small delay.
-    # TODO: Need more robust solution here, grep-ing through 'ip link' should
-    #       do the job.
-    sleep 1
+
+    for ((;;)); do
+        if ip tuntap list | grep -q byedpi-tun; then
+            break
+        fi
+
+        echo "Waiting for tunnel interface..."
+        sleep 1
+    done
 
     user_id=$(id -u byedpi)
-    nic_name=$(ip route show to default | awk '{print $5}')
+    nic_name=$(ip route show to default | awk '$5 != "byedpi-tun" {print $5; exit}')
+    gateway_addr=$(ip route show to default | awk '$5 != "byedpi-tun" {print $3; exit}')
 
     ip rule add uidrange $user_id-$user_id lookup 110 pref 28000 || true
-    ip route add default via 192.168.1.1 dev $nic_name metric 50 table 110 || true
+    ip route add default via $gateway_addr dev $nic_name metric 50 table 110 || true
     ip route add default via 172.20.0.1 dev byedpi-tun metric 1 || true
 }
 
 stop_tunneling() {
     user_id=$(id -u byedpi)
-    nic_name=$(ip route show to default | awk '{print $5}')
+    nic_name=$(ip route show to default | awk '$5 != "byedpi-tun" {print $5; exit}')
+    gateway_addr=$(ip route show to default | awk '$5 != "byedpi-tun" {print $3; exit}')
 
     ip rule del uidrange $user_id-$user_id lookup 110 pref 28000 || true
-    ip route del default via 192.168.1.1 dev $nic_name metric 50 table 110 || true
+    ip route del default via "$gateway_addr" dev "$nic_name" metric 50 table 110 || true
     ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
     killall ciadpi || true
     killall hev-socks5-tunnel || true
