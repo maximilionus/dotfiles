@@ -49,15 +49,19 @@ start_tunneling() {
     sleep 1
 
     user_id=$(id -u byedpi)
+    nic_name=$(ip route show to default | awk '{print $5}')
+
     ip rule add uidrange $user_id-$user_id lookup 110 pref 28000 || true
-    ip route add default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
+    ip route add default via 192.168.1.1 dev $nic_name metric 50 table 110 || true
     ip route add default via 172.20.0.1 dev byedpi-tun metric 1 || true
 }
 
 stop_tunneling() {
     user_id=$(id -u byedpi)
+    nic_name=$(ip route show to default | awk '{print $5}')
+
     ip rule del uidrange $user_id-$user_id lookup 110 pref 28000 || true
-    ip route del default via 192.168.1.1 dev enp9s0 metric 50 table 110 || true
+    ip route del default via 192.168.1.1 dev $nic_name metric 50 table 110 || true
     ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
     killall ciadpi || true
     killall hev-socks5-tunnel || true
