@@ -1,14 +1,18 @@
 #!/bin/bash
 set -e
 
+CONF_DIR="/etc/byedpi"
+LOG_DIR="/var/log/byedpi"
+PID_DIR="/var/run/byedpi"
+
 cmd_help() {
     cat <<EOF
 $0
 
 COMMANDS:
     tun <start|stop|restart>
-        Set routing to tunnel all traffic to local proxy, or use a plain SOCKS5
-        proxy server, requiring manual connection from user.
+        Control the background routing to tunnel all traffic through the
+        byedpi proxy.
     help
         Show this message and exit.
 EOF
@@ -18,12 +22,11 @@ cmd_tun() {
     case $1 in
         start)
             start_tunneling
-            echo "Successfully changed the mode to full traffic tunneling."
+            echo "Successfully enabled full traffic tunneling."
             ;;
         stop)
             stop_tunneling
-            echo "Successfully changed the mode to proxy (default)"
-            echo "Manual user connection to proxy server is required."
+            echo "Successfully stopped the tunneling."
             ;;
         restart)
             stop_tunneling
@@ -35,31 +38,39 @@ cmd_tun() {
     esac
 }
 
+prepare_dirs() {
+    mkdir -p "$LOG_DIR"
+    mkdir -p "$PID_DIR"
+}
+
 start_tunneling() {
-    mkdir -p /tmp/byedpi
+    prepare_dirs
 
     nohup su - byedpi -s /bin/bash -c \
 "ciadpi --ip 127.0.0.1 --port 4080 \
 --udp-fake=2 --oob=2 --md5sig \
---auto=torst --timeout=3" > /tmp/byedpi/ciadpi.log 2>&1 &
-    nohup hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml > /tmp/byedpi/hev-socks5-tunnel.log 2>&1 &
+--auto=torst --timeout=3" \
+> $LOG_DIR/server.log 2>&1 & echo $! > $PID_DIR/server.pid
 
-    for ((;;)); do
+    nohup hev-socks5-tunnel $CONF_DIR/hev-socks5-tunnel.yaml \
+        > $LOG_DIR/tunnel.log 2>&1 & echo $! > $PID_DIR/tunnel.pid
+
+   while true; do
+        sleep 0.2
         if ip tuntap list | grep -q byedpi-tun; then
             break
         fi
 
         echo "Waiting for tunnel interface..."
-        sleep 1
     done
 
     user_id=$(id -u byedpi)
     nic_name=$(ip route show to default | awk '$5 != "byedpi-tun" {print $5; exit}')
     gateway_addr=$(ip route show to default | awk '$5 != "byedpi-tun" {print $3; exit}')
 
-    ip rule add uidrange $user_id-$user_id lookup 110 pref 28000 || true
-    ip route add default via $gateway_addr dev $nic_name metric 50 table 110 || true
-    ip route add default via 172.20.0.1 dev byedpi-tun metric 1 || true
+    ip rule add uidrange $user_id-$user_id lookup 110 pref 28000
+    ip route add default via $gateway_addr dev $nic_name metric 50 table 110
+    ip route add default via 172.20.0.1 dev byedpi-tun metric 1
 }
 
 stop_tunneling() {
@@ -67,11 +78,12 @@ stop_tunneling() {
     nic_name=$(ip route show to default | awk '$5 != "byedpi-tun" {print $5; exit}')
     gateway_addr=$(ip route show to default | awk '$5 != "byedpi-tun" {print $3; exit}')
 
-    ip rule del uidrange $user_id-$user_id lookup 110 pref 28000 || true
-    ip route del default via "$gateway_addr" dev "$nic_name" metric 50 table 110 || true
-    ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
-    killall ciadpi || true
-    killall hev-socks5-tunnel || true
+    ip rule del uidrange $user_id-$user_id lookup 110 pref 28000
+    ip route del default via "$gateway_addr" dev "$nic_name" metric 50 table 110
+    ip route del default via 172.20.0.1 dev byedpi-tun metric 1
+
+    kill $(cat $PID_DIR/tunnel.pid)
+    kill $(cat $PID_DIR/server.pid)
 }
 
 case $1 in
