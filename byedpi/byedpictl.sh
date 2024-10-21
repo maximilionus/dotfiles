@@ -82,8 +82,8 @@ stop_tunneling() {
     ip route del default via "$gateway_addr" dev "$nic_name" metric 50 table 110
     ip route del default via 172.20.0.1 dev byedpi-tun metric 1
 
-    kill $(cat $PID_DIR/tunnel.pid)
-    kill $(cat $PID_DIR/server.pid)
+    kill $(cat $PID_DIR/tunnel.pid) || true
+    kill $(cat $PID_DIR/server.pid) || true
 }
 
 case $1 in
