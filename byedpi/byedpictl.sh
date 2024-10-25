@@ -10,9 +10,9 @@ cmd_help() {
 $0
 
 COMMANDS:
-    tun <start|stop|restart>
-        Control the background routing to tunnel all traffic through the
-        byedpi proxy.
+    tun <start|stop|restart|status>
+        Control and monitor the background routing to tunnel all traffic
+        through the byedpi proxy.
     help
         Show this message and exit.
 EOF
@@ -32,6 +32,9 @@ cmd_tun() {
             stop_tunneling
             start_tunneling
             echo "Tunnel successfully restarted."
+            ;;
+        status)
+            show_tunneling_status
             ;;
         *)
             echo "Error: Invalid mode: \"$1\"."
@@ -84,6 +87,36 @@ stop_tunneling() {
 
     kill $(cat $PID_DIR/tunnel.pid) || true
     kill $(cat $PID_DIR/server.pid) || true
+
+    rm -rf "$PID_DIR"
+}
+
+show_tunneling_status() {
+    server_status="offline"
+    tun_status="offline"
+
+    if [ -f "$PID_DIR/server.pid" ]; then
+        if ps -p $(cat "$PID_DIR/server.pid") > /dev/null 2>&1; then
+            server_status="running"
+        else
+            server_status="crashed"
+        fi
+    fi
+
+    if [ -f "$PID_DIR/tunnel.pid" ]; then
+        if ps -p $(cat "$PID_DIR/tunnel.pid") > /dev/null 2>&1; then
+            tun_status="running"
+        else
+            tun_status="crashed"
+        fi
+    fi
+
+    cat <<EOF
+byedpictl background tunneling services
+
+server: $server_status
+tunnel: $tun_status
+EOF
 }
 
 case $1 in
