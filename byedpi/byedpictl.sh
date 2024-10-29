@@ -82,14 +82,18 @@ stop_tunneling() {
     nic_name=$(ip route show to default | awk '$5 != "byedpi-tun" {print $5; exit}')
     gateway_addr=$(ip route show to default | awk '$5 != "byedpi-tun" {print $3; exit}')
 
-    ip rule del uidrange $user_id-$user_id lookup 110 pref 28000
-    ip route del default via "$gateway_addr" dev "$nic_name" metric 50 table 110
-    ip route del default via 172.20.0.1 dev byedpi-tun metric 1
+    # Not sure if that's a good idea to let all steps be passable by default
+    # as this may lead to a lot of unexpected behavior. There should be at
+    # least some "is command even available" checks here.
+
+    ip rule del uidrange $user_id-$user_id lookup 110 pref 28000 || true
+    ip route del default via "$gateway_addr" dev "$nic_name" metric 50 table 110 || true
+    ip route del default via 172.20.0.1 dev byedpi-tun metric 1 || true
 
     kill $(cat $PID_DIR/tunnel.pid) || true
     kill $(cat $PID_DIR/server.pid) || true
 
-    rm -rf "$PID_DIR"
+    rm -rf "$PID_DIR" || true
 }
 
 show_tunneling_status() {
