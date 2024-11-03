@@ -51,8 +51,9 @@ start_tunneling() {
 
     nohup su - byedpi -s /bin/bash -c \
 "ciadpi --ip 127.0.0.1 --port 4080 \
---udp-fake=2 --oob=2 --md5sig \
---auto=torst --timeout 3 --tlsrec 3+s \
+--proto=udp --udp-fake=2 \
+--proto=http,tls --oob=2 \
+--auto=torst --tlsrec 3+s \
 --auto=torst --timeout=3" \
 > $LOG_DIR/server.log 2>&1 & echo $! > $PID_DIR/server.pid
 
