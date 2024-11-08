@@ -10,7 +10,7 @@
 sudo /usr/local/bin/hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml 
 ```
 Make sure the hev-socks5-tunnel created the network interface by the name of `byedpi-tun`. 
-Check it with `id addr show`. 
+Check it with `id addr show`: 
 
 ```
 byedpi-tun: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 8500 qdisc pfifo_fast state UNKNOWN group default qlen 500
