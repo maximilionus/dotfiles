@@ -4,7 +4,7 @@
 2) Download byedpictl.sh
 3) Go to the directory where you downloaded `install.sh` and make it executable `chmod +x install.sh`
 4) Run `install.sh`
-5) In your terminal, you need to run hev-socks5-tunnel first:
+5) You need to run hev-socks5-tunnel first:
 
 ```
 sudo /usr/local/bin/hev-socks5-tunnel /etc/byedpi/hev-socks5-tunnel.yaml 
@@ -24,7 +24,7 @@ byedpi-tun: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 8500 qdisc pfifo_fast 
 ```
 <b>If you do not see an interface with the name of `byedpi-tun` something is wrong and you must make it appear first.</b>
 
-If you encounter a message saying `RTNETLINK answers: File exists` restart your machine and check that an interface `byedpi-tun` exists. If it's there you can continue.
+If you encounter a message saying `RTNETLINK answers: File exists` restart your machine, run step 5 command again and check that an interface `byedpi-tun` exists. If it's there you can continue.
 
 6) Make `byedpictl.sh` executable `chmod +x byedpictl.sh`
 7) Run `sudo ./byedpictl.sh tun start` to enable full traffic tunneling. That will tunnel `byedpi` obfuscated traffic through `hev-socks5-tunnel`. We can change `start` argument to `stop` or `restart`.
@@ -44,4 +44,4 @@ We can edit `byedpi` command options in `byedpictl.sh`:
 --auto=torst --timeout=3" \
 ```
 
-Find the combination that works for you and try to access resources such as Youtube and Discord.
+Find the combination of options that works for you and try to access resources such as Youtube and Discord.
