@@ -1,9 +1,17 @@
 #!/bin/bash
 set -e
 
+BYEDPI_ARGS="\
+--ip 127.0.0.1 --port 4080 \
+--proto=udp --udp-fake=2 \
+--proto=http,tls --disoob=1 \
+--auto=torst --disoob=1 --tlsrec 3+s \
+--auto=torst --timeout=3"
+
 CONF_DIR="/etc/byedpi"
 LOG_DIR="/var/log/byedpi"
 PID_DIR="/var/run/byedpi"
+
 
 cmd_help() {
     cat <<EOF
@@ -49,12 +57,7 @@ prepare_dirs() {
 start_tunneling() {
     prepare_dirs
 
-    nohup su - byedpi -s /bin/bash -c \
-"ciadpi --ip 127.0.0.1 --port 4080 \
---proto=udp --udp-fake=2 \
---proto=http,tls --disoob=1 \
---auto=torst --disoob=1 --tlsrec 3+s \
---auto=torst --timeout=3" \
+    nohup su - byedpi -s /bin/bash -c "ciadpi $BYEDPI_ARGS" \
 > $LOG_DIR/server.log 2>&1 & echo $! > $PID_DIR/server.pid
 
     nohup hev-socks5-tunnel $CONF_DIR/hev-socks5-tunnel.yaml \
