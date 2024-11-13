@@ -4,7 +4,7 @@ set -e
 TOOLCHAIN="/var/tmp/revanced-cli"
 
 if [[ ! -d $TOOLCHAIN ]]; then
-    echo "Revanced utilities not found, use prepare.sh first"
+    echo "Revanced utilities not found."
     ./prepare.sh
 fi
 
