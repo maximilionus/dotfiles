@@ -9,7 +9,7 @@ fi
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt histignorespace
+setopt histignorespace appendhistory sharehistory
 
 # Basic options
 setopt autocd beep extendedglob nomatch notify
@@ -32,6 +32,9 @@ autoload -Uz compinit && compinit
 
 # - Move through lists with nav keys
 zstyle ':completion:*' menu select
+
+# - Enable colors for lists
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # - Case insensitive completion
 zstyle ':completion:*' matcher-list '' \
