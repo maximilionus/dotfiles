@@ -15,12 +15,25 @@ setopt histignorespace
 setopt autocd beep extendedglob nomatch notify
 bindkey -e
 
+# Plugin manager and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] \
+    && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light romkatv/powerlevel10k
+
+# Completion
 autoload -Uz compinit && compinit
-# Completion Options
-## Move through lists with nav keys
+
+# - Move through lists with nav keys
 zstyle ':completion:*' menu select
 
-## Case insensitive completion
+# - Case insensitive completion
 zstyle ':completion:*' matcher-list '' \
     'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
@@ -39,14 +52,5 @@ bindkey  "^[[3~"  delete-char
 alias ll="ls -lah"
 alias lsa="ls -ah"
 
-# Load and setup plugins
-source $HOME/.zsh/antigen.zsh
-
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen theme romkatv/powerlevel10k
-
-antigen apply
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# Load p10k config
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
