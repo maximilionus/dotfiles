@@ -12,7 +12,7 @@ SAVEHIST=1000
 setopt histignorespace appendhistory sharehistory
 
 # Basic options
-setopt autocd beep extendedglob nomatch notify
+setopt autocd beep extendedglob globdots nomatch notify
 
 # Plugin manager and plugins
 # - Should load before 'compinit'
