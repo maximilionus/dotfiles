@@ -1,8 +1,9 @@
+[general]
 import = [
     "~/.config/alacritty/theme_selected.toml"
 ]
 
-[shell]
+[terminal.shell]
 program = "tmux"
 
 [env]
@@ -14,3 +15,4 @@ size = 12
 [window]
 dimensions = { columns = 120, lines = 45 }
 title = "Terminal"
+
