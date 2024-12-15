@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Nekoray
-Icon=/opt/nekoray/nekoray.png
+Name=Nekobox
+Icon=/opt/nekoray/nekobox.png
 Path=/opt/nekoray/
 Exec=launcher
 Type=Application
