@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-printf "\n-> Installing the configuration...\n"
+printf "Installing the configuration\n\n"
 ln -sfv "$(realpath .zshrc)" "$HOME/.zshrc"
 ln -sfv "$(realpath .p10k.zsh)" "$HOME/.p10k.zsh"
 
