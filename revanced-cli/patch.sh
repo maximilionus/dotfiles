@@ -13,17 +13,8 @@ patch_tiktok() {
     echo
 
     java -jar "$TOOLCHAIN/revanced-cli.jar" patch \
-        --patch-bundle "$TOOLCHAIN/revanced-patches.jar" \
-        --merge "$TOOLCHAIN/revanced-integrations.apk" \
-        --include "Remember clear display" \
-        --include "Playback speed" \
-        --include "Downloads" \
-        --include "Show seekbar" \
-        --include "Feed filter" \
-        --include "Settings" \
-        --include "SIM spoof" \
-        --include "Fix Google login" \
-        --include "Disable login requirement" \
+        --patches "$TOOLCHAIN/patches.rvp" \
+        --enable "SIM spoof" \
         $1
 
     echo

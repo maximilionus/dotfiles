@@ -4,8 +4,8 @@ set -e
 TOOLCHAIN="/var/tmp/revanced-cli"
 
 declare -A files=(
-    ["revanced-cli.jar"]="https://github.com/ReVanced/revanced-cli/releases/download/v4.6.0/revanced-cli-4.6.0-all.jar"
-    ["revanced-patches.jar"]="https://github.com/ReVanced/revanced-patches/releases/download/v4.17.0/revanced-patches-4.17.0.jar"
+    ["revanced-cli.jar"]="https://github.com/ReVanced/revanced-cli/releases/download/v5.0.0/revanced-cli-5.0.0-all.jar"
+    ["patches.rvp"]="https://github.com/ReVanced/revanced-patches/releases/download/v5.7.2/patches-5.7.2.rvp"
     ["revanced-integrations.apk"]="https://github.com/ReVanced/revanced-integrations/releases/download/v1.16.0/revanced-integrations-1.16.0.apk"
 )
 
