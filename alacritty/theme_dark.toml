@@ -1,4 +1,4 @@
-# KDE Breeze (modified)
+# github Alacritty Colors (Modified)
 
 # Default colors
 [colors.primary]
@@ -7,33 +7,30 @@ foreground = '#ffffff'
 
 # Normal colors
 [colors.normal]
-black = '#232627'
-red = '#ed1515'
-green = '#11d116'
-yellow = '#f67400'
-blue = '#1d99f3'
-magenta = '#9b59b6'
-cyan = '#1abc9c'
-white = '#fcfcfc'
+black   = '#586069'
+red     = '#ea4a5a'
+green   = '#34d058'
+yellow  = '#ffea7f'
+blue    = '#2188ff'
+magenta = '#b392f0'
+cyan    = '#39c5cf'
+white   = '#d1d5da'
 
 # Bright colors
 [colors.bright]
-black = '#7f8c8d'
-red = '#c0392b'
-green = '#1cdc9a'
-yellow = '#fdbc4b'
-blue = '#3daee9'
-magenta = '#8e44ad'
-cyan = '#16a085'
-white = '#ffffff'
+black   = '#959da5'
+red     = '#f97583'
+green   = '#85e89d'
+yellow  = '#ffea7f'
+blue    = '#79b8ff'
+magenta = '#b392f0'
+cyan    = '#56d4dd'
+white   = '#fafbfc'
 
-# Dim colors
-[colors.dim]
-black = '#31363b'
-red = '#783228'
-green = '#17a262'
-yellow = '#b65619'
-blue = '#1b668f'
-magenta = '#614a73'
-cyan = '#186c60'
-white = '#63686d'
+[[colors.indexed_colors]]
+index = 16
+color = '#d18616'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#f97583'
