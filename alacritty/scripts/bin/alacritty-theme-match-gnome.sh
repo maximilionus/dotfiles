@@ -2,7 +2,7 @@
 
 SCRIPT_THEME_SWITCHER="alacritty-theme-switch.sh"
 
-# Checks
+
 if ! command -v gsettings &> /dev/null; then
     echo "Non GNOME environment detected, exiting."
     exit 1
@@ -13,13 +13,9 @@ if ! command -v "$SCRIPT_THEME_SWITCHER" &> /dev/null; then
     exit 1
 fi
 
-# Set theme
 gnome_prefers=$(gsettings get org.gnome.desktop.interface color-scheme)
-
-if [[ $gnome_prefers == "'default'" ]]; then
-    # Light
-    $SCRIPT_THEME_SWITCHER light
-else
-    # Dark
+if [[ $gnome_prefers == "'prefer-dark'" ]]; then
     $SCRIPT_THEME_SWITCHER dark
+else
+    $SCRIPT_THEME_SWITCHER light
 fi
