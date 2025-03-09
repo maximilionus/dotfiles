@@ -1,30 +1,47 @@
 #!/bin/bash
 set -e
 
-TOOLCHAIN="/var/tmp/revanced-cli"
+TOOLCHAIN="$HOME/.local/share/revanced-cli"
 
 if [[ ! -d $TOOLCHAIN ]]; then
-    echo "Revanced utilities not found."
+    echo "Revanced toolchain not found!"
     ./prepare.sh
 fi
 
 patch_tiktok() {
-    echo "Patching TikTok ..."
+    echo "- Patching TikTok"
     echo
 
     java -jar "$TOOLCHAIN/revanced-cli.jar" patch \
         --patches "$TOOLCHAIN/patches.rvp" \
         --enable "SIM spoof" \
-        $1
+        "$1"
 
     echo
     echo "Done"
 }
 
-package_name=$( basename $1 )
+patch_spotify() {
+    echo "- Patching Spotify"
+    echo
+
+    java -jar "$TOOLCHAIN/revanced-cli.jar" patch \
+        --patches "$TOOLCHAIN/patches.rvp" \
+        --exclusive \
+        --enable "Spoof signature" \
+        "$1"
+
+    echo
+    echo "Done"
+}
+
+package_name=$( basename "$1" )
 case $package_name in
     com.zhiliaoapp.musically*)
-        patch_tiktok $1
+        patch_tiktok "$1"
+        ;;
+    com.spotify.music*|Spotify*)
+        patch_spotify "$1"
         ;;
     *)
         echo "No supported apk provided to script"
