@@ -13,7 +13,7 @@ mkdir -p "$TOOLCHAIN"
 
 for file_name in "${!files[@]}"; do
     echo "Downloading $file_name ..."
-    curl -L -o "$TOOLCHAIN/$file_name" \
+    curl --progress-bar -L -o "$TOOLCHAIN/$file_name" \
         "${files[$file_name]}"
     echo
 done

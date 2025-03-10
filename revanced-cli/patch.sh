@@ -5,7 +5,7 @@ TOOLCHAIN="$HOME/.local/share/revanced-cli"
 
 if [[ ! -d $TOOLCHAIN ]]; then
     echo "Revanced toolchain not found!"
-    ./prepare.sh
+    ./install.sh
 fi
 
 patch_tiktok() {
