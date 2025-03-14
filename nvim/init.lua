@@ -1,5 +1,4 @@
--- Configure leader key
-vim.g.mapleader = ' '
+require('core')
 
 -- Bootstrap plugin manager
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -17,7 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Load modules
 require('lazy').setup('plugins')
-require('options')
 require('keybindings')
 require('commands')
 require('colorscheme')

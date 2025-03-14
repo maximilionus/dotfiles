@@ -1,3 +1,6 @@
+-- Configure leader key
+vim.g.mapleader = ' '
+
 -- Enable relative numbers
 vim.opt.relativenumber = true
 
