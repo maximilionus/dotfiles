@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 CONFIG_DIR="$HOME/.config/alacritty"
 THEME_SELECTED="theme_selected.toml"
 THEME_DARK="theme_dark.toml"

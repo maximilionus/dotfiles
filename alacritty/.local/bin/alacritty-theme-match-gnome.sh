@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SCRIPT_THEME_SWITCHER="alacritty-theme-switch.sh"
 
 

@@ -10,7 +10,7 @@ curl --progress-bar --create-dirs -L \
 
 echo "=> Installing the configuration."
 
-target_path=$(realpath "./vimrc")
+target_path=$(realpath "./.vimrc")
 link_path="$HOME/.vimrc"
 echo -n "--> Linking the vim config: "
 ln -sfv $target_path $link_path
