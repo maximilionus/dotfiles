@@ -1,9 +1,12 @@
-Personal configuration files
-============================
+Personal configurations
 
-Repository is meant to be placed in the user root directory ($HOME, ~). Most of
-the configurations does have special "installation" scripts, that will link all
-the required files to make them detectable by software. Moving the cloned
-repository WILL BREAK all the created symlinks.
+
+Repository is meant to be placed in the user home directory and managed with
+GNU/Stow. The file structure is designed to be modular.
+
+Example installation of configurations for zsh, neovim and profile.d:
+    $ stow zsh nvim profile.d
+
+Moving the cloned repository **WILL BREAK** all the installed configurations!
 
 ANYTHING in this repository is subject to change, use at your own risk.
