@@ -37,11 +37,11 @@ set softtabstop=0
 """ Visual clarity for whitespaces, tabs and other symbols.
 set list
 set listchars=
-set listchars+=tab:·\ 
+set listchars+=tab:»\ 
 set listchars+=trail:·
 set listchars+=extends:»
 set listchars+=precedes:«
-set listchars+=nbsp:░
+set listchars+=nbsp:␣
 
 
 "" Keybinds
