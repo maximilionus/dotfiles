@@ -9,33 +9,27 @@ THEME_LIGHT="theme_light.toml"
 
 
 set_dark () {
-    cd "$CONFIG_DIR"
-
-    if [ "$THEME_SELECTED" -ef "$THEME_DARK" ]; then
+    if diff -q "$THEME_SELECTED" "$THEME_DARK" > /dev/null; then
         echo "Theme is already set to dark."
         exit 0
     fi
 
-    ln -sf "./$THEME_DARK" "$THEME_SELECTED"
+    cp -f "./$THEME_DARK" "$THEME_SELECTED"
     echo "Switched Alacritty theme to dark mode."
 }
 
 set_light () {
-    cd "$CONFIG_DIR"
-
-    if [ "$THEME_SELECTED" -ef "$THEME_LIGHT" ]; then
+    if diff -q "$THEME_SELECTED" "$THEME_LIGHT" > /dev/null; then
         echo "Theme is already set to light."
         exit 0
     fi
 
     echo "Switched Alacritty theme to light mode."
-    ln -sf "./$THEME_LIGHT" "$THEME_SELECTED"
+    cp -f "./$THEME_LIGHT" "$THEME_SELECTED"
 }
 
 set_autoswitch () {
-    cd "$CONFIG_DIR"
-
-    if [ "$THEME_SELECTED" -ef "$THEME_DARK" ]; then
+    if diff -q "$THEME_SELECTED" "$THEME_DARK" > /dev/null; then
         set_light
     else
         set_dark
@@ -44,9 +38,15 @@ set_autoswitch () {
 
 
 # Main
-if [ ! -d "$CONFIG_DIR" ]; then
+if [[ ! -d $CONFIG_DIR ]]; then
     echo "Alacritty configuration not found."
     exit 1
+fi
+
+cd "$CONFIG_DIR"
+
+if [[ ! -f $THEME_SELECTED ]]; then
+    set_dark
 fi
 
 case "$1" in
