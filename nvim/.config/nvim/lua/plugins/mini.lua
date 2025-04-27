@@ -4,6 +4,6 @@ return {
     config = function()
         require('mini.align').setup()      -- Align text with 'ga'
         require('mini.comment').setup()    -- Comment code with 'gc'
-        require('mini.trailspace').setup() -- Trail whitespace (Used in keybindings)
+        require('mini.trailspace').setup() -- Trail whitespace cleanup
     end,
 }
