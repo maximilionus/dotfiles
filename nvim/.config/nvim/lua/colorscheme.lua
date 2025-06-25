@@ -31,9 +31,7 @@ function colorscheme_set_xdg()
         local value = result:match("uint32 (%d)")
         if value == "0" then
             theme = "light"
-        elseif value == "1" then
-            theme = "dark"
-        elseif value == "2" then
+        elseif value == "1" or value == "2" then
             theme = "dark"
         end
     end
