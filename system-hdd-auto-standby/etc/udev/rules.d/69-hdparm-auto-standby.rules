@@ -1,0 +1,2 @@
+# Automatic HDD standby after 30 min of inactivity
+ACTION=="add|change", KERNEL=="sd[a-z]", ATTRS{queue/rotational}=="1", RUN+="/usr/bin/hdparm -S 241 /dev/%k"
