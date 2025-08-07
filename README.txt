@@ -10,7 +10,7 @@ Example installation of configurations for zsh, neovim and profile.d:
 Stow should not be used for system packages as it's symlinking approach creates
 possible security flaws. Therefore using the manual installation is preferred
 for "system-*" packages. Use the following syntax:
-    # cp -v system-*/* /
+    # cp -rv system-*/* /
 
 Moving the cloned repository **WILL BREAK** all the installed configurations!
 
