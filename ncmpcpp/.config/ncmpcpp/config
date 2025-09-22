@@ -1,0 +1,36 @@
+ncmpcpp_directory = ~/.local/share/ncmpcpp
+
+# General
+user_interface = classic
+connected_message_on_startup = no
+incremental_seeking = yes
+seek_time = 15
+volume_change_step = 10
+progressbar_look = ━━
+media_library_primary_tag = artist
+media_library_albums_split_by_date = yes
+media_library_hide_album_dates = no
+lyrics_fetchers = tags, genius, tekstowo, plyrics, justsomelyrics, jahlyrics, zeneszoveg, internet
+startup_screen = media_library
+jump_to_now_playing_song_at_start = yes
+display_volume_level = yes
+display_bitrate = yes
+
+# Colors
+colors_enabled = yes
+empty_tag_color = default
+header_window_color = default
+volume_color = default
+state_line_color = default
+state_flags_color = default:b
+main_window_color = white
+color1 = white
+color2 = blue
+progressbar_color = black:b
+progressbar_elapsed_color = blue:b
+statusbar_color = default
+statusbar_time_color = default:b
+player_state_color = default:b
+alternative_ui_separator_color = black:b
+window_border_color = green
+active_window_border = red
