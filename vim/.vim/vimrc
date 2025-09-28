@@ -1,11 +1,11 @@
 " vim-plug init
-call plug#begin()
-Plug 'airblade/vim-gitgutter'
-call plug#end()
+"call plug#begin()
+"Plug 'airblade/vim-gitgutter'
+"call plug#end()
 
 " Plugins
 "" vim-gitgutter transparent bg
-highlight! link SignColumn LineNr
+"highlight! link SignColumn LineNr
 
 
 " User settings
