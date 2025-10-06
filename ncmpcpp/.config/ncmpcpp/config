@@ -15,6 +15,8 @@ startup_screen = media_library
 jump_to_now_playing_song_at_start = yes
 display_volume_level = yes
 display_bitrate = yes
+autocenter_mode = yes
+centered_cursor = yes
 
 # Colors
 colors_enabled = yes
@@ -26,6 +28,9 @@ state_flags_color = default:b
 main_window_color = white
 color1 = white
 color2 = blue
+current_item_prefix = $(blue)$r
+now_playing_prefix = "$b$u"
+now_playing_suffix = $/b$/u
 progressbar_color = black:b
 progressbar_elapsed_color = blue:b
 statusbar_color = default
