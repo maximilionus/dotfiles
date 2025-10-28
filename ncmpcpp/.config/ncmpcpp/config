@@ -2,6 +2,7 @@ ncmpcpp_directory = ~/.local/share/ncmpcpp
 mpd_music_dir = ~/Music
 
 # General
+song_columns_list_format = (20)[white]{a} (6f)[blue]{NE} (50)[white]{t|f:Title} (20)[blue]{b} (7f)[white]{l}
 user_interface = classic
 connected_message_on_startup = no
 incremental_seeking = yes
@@ -30,8 +31,8 @@ main_window_color = white
 color1 = white
 color2 = blue
 current_item_prefix = $(blue)$r
-now_playing_prefix = "$b$u"
-now_playing_suffix = $/b$/u
+now_playing_prefix = "$(blue) $b"
+now_playing_suffix = $/b$/r
 progressbar_color = black:b
 progressbar_elapsed_color = blue:b
 statusbar_color = default
