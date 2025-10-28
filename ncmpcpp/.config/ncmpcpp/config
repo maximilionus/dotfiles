@@ -1,4 +1,5 @@
 ncmpcpp_directory = ~/.local/share/ncmpcpp
+mpd_music_dir = ~/Music
 
 # General
 user_interface = classic
