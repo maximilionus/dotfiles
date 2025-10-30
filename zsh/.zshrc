@@ -51,6 +51,7 @@ bindkey "^[[1;3D" backward-word
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
+bindkey -M vicmd '/' history-incremental-search-backward
 
 # Aliases
 alias ll="ls -lah"
