@@ -6,12 +6,14 @@ local function transparent_bg()
 end
 
 function colorscheme_set_dark()
-    vim.cmd.colorscheme("github_dark")
+    vim.cmd.colorscheme("default")
+    vim.o.background = 'dark'
     transparent_bg()
 end
 
 function colorscheme_set_light()
-    vim.cmd.colorscheme("github_light")
+    vim.cmd.colorscheme("default")
+    vim.o.background = 'light'
     transparent_bg()
 end
 
