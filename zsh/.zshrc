@@ -16,7 +16,7 @@ zstyle ':vcs_info:git*' formats " %F{blue}%b%f %m%u%c %a "
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr ' %F{green}✚%f'
-zstyle ':vcs_info:*' unstagedstr ' %F{red}●%f'
+zstyle ':vcs_info:*' unstagedstr ' %F{yellow}?%f'
 
 precmd() {
     vcs_info
