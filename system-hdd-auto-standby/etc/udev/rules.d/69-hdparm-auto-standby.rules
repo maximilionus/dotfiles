@@ -1,2 +1,2 @@
-# Automatic HDD standby after 10 mins of inactivity
+# Automatic HDD standby after 5 mins of inactivity
 ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="sd*", ATTRS{queue/rotational}=="1", RUN+="/usr/bin/hdparm -S 60 $env{DEVNAME}"
