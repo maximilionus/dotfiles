@@ -14,7 +14,7 @@ highlight LineNr ctermfg=darkgrey
 
 """ Status line
 set laststatus=2
-hi StatusLine ctermbg=NONE cterm=bold
+hi StatusLine ctermbg=none cterm=bold
 
 """ Allow unsaved buffers
 set hidden
@@ -29,16 +29,19 @@ set smartcase
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-""" Spellcheck
-hi clear SpellBad
-hi SpellBad cterm=underline
-hi SpellBad gui=undercurl
-
 """ Prefer whitespace to tabs
 set expandtab smarttab
 set shiftwidth=4
 set tabstop=8
 set softtabstop=0
+
+""" Spellcheck
+hi clear SpellBad
+hi SpellBad cterm=underline
+hi SpellBad gui=undercurl
+
+""" Brackets style
+hi MatchParen ctermbg=none cterm=bold
 
 """ Visual clarity for whitespaces, tabs and other symbols.
 set list
