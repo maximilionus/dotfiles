@@ -6,7 +6,7 @@ syntax on
 set hlsearch
 set autoindent
 set textwidth=80
-set updatetime=500
+"set updatetime=500
 
 """ Relative numbers
 set relativenumber
@@ -24,10 +24,6 @@ set viminfo="NONE"
 
 """ Case insensitive when lowercase, sensitive if any uppercase
 set smartcase
-
-""" Disable delay for ESC
-set notimeout
-set ttimeout
 
 """ Dynamic cursor
 let &t_SI = "\e[6 q"
