@@ -1,49 +1,23 @@
 " User settings
 
-"" General Options
+"" General
 set term=xterm-256color
+
 syntax on
+set hidden
 set hlsearch
+set smartcase
 set autoindent
 set textwidth=80
-"set updatetime=500
-
-""" Relative numbers
-set relativenumber
-highlight LineNr ctermfg=darkgrey
-
-""" Status line
 set laststatus=2
-hi StatusLine ctermbg=none cterm=bold
-
-""" Allow unsaved buffers
-set hidden
-
-""" Disable registers caching
 set viminfo="NONE"
+set relativenumber
 
-""" Case insensitive when lowercase, sensitive if any uppercase
-set smartcase
-
-""" Dynamic cursor
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-
-""" Prefer whitespace to tabs
-set expandtab smarttab
-set shiftwidth=4
 set tabstop=8
+set shiftwidth=4
 set softtabstop=0
+set expandtab smarttab
 
-""" Spellcheck
-hi clear SpellBad
-hi SpellBad cterm=underline
-hi SpellBad gui=undercurl
-
-""" Brackets style
-hi MatchParen ctermbg=none cterm=bold
-
-""" Visual clarity for whitespaces, tabs and other symbols.
 set list
 set listchars=
 set listchars+=tab:»\ 
@@ -51,6 +25,22 @@ set listchars+=trail:·
 set listchars+=extends:»
 set listchars+=precedes:«
 set listchars+=nbsp:␣
+
+""" Dynamic cursor
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+"" Highlight
+highlight LineNr ctermfg=darkgrey
+highlight StatusLine ctermbg=none cterm=bold
+highlight MatchParen ctermbg=none cterm=bold
+highlight WildMenu ctermfg=black ctermbg=white
+
+highlight Pmenu ctermbg=black ctermfg=white
+highlight PmenuSel ctermbg=gray ctermfg=black
+
+highlight clear SpellBad
+highlight SpellBad cterm=underline
 
 
 "" Keybinds
