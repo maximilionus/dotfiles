@@ -26,8 +26,8 @@ set viminfo="NONE"
 set smartcase
 
 """ Disable delay for ESC
-set timeout
-set timeoutlen=50
+set notimeout
+set ttimeout
 
 """ Dynamic cursor
 let &t_SI = "\e[6 q"
@@ -56,7 +56,7 @@ set listchars+=nbsp:␣
 
 "" Keybinds
 
-""" Set leader key
+""" Set Leader key
 let mapleader=" "
 
 """ Remove all trailing whitespace
@@ -72,3 +72,32 @@ nnoremap <Leader>p :bp<CR>
 """ Spelling check switches
 nnoremap <Leader>l :set spell spelllang=en_us,ru_ru
 nnoremap <Leader><S-l> :set nospell<CR>
+
+
+" Features
+"" Cross-platform clipboard without '+clipboard' dependency
+function! ClipCopy(text) abort
+    if executable('wl-copy')
+        call system('wl-copy', a:text)
+    elseif executable('xclip')
+        call system('xclip -selection clipboard', a:text)
+    elseif executable('termux-clipboard-set')
+        call system('termux-clipboard-set', a:text)
+    else
+        echoerr 'No clipboard tool found'
+    endif
+endfunction
+
+function! ClipPaste() abort
+    if executable('wl-paste')
+        return system('wl-paste --no-newline')
+    elseif executable('xclip')
+        return system('xclip -selection clipboard -o')
+    elseif executable('termux-clipboard-get')
+        return system('termux-clipboard-get')
+    endif
+    return ''
+endfunction
+
+xnoremap <silent> <Leader>y :<C-u>call ClipCopy(join(getline("'<","'>"), "\n"))<CR>
+nnoremap <silent> <Leader>p :call append(line('.'), split(ClipPaste(), "\n"))<CR>
