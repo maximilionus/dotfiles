@@ -1,23 +1,20 @@
-" vim-plug init
-"call plug#begin()
-"Plug 'airblade/vim-gitgutter'
-"call plug#end()
-
-" Plugins
-"" vim-gitgutter transparent bg
-"highlight! link SignColumn LineNr
-
-
 " User settings
 
-"" Options
+"" General Options
+set term=xterm-256color
+syntax on
+set hlsearch
+set autoindent
+set textwidth=80
+set updatetime=500
 
-""" Show line numbers
+""" Relative numbers
 set relativenumber
 highlight LineNr ctermfg=darkgrey
 
-""" Refresh time in ms
-set updatetime=500
+""" Status line
+set laststatus=2
+hi StatusLine ctermbg=NONE cterm=bold
 
 """ Allow unsaved buffers
 set hidden
@@ -27,6 +24,19 @@ set viminfo="NONE"
 
 """ Case insensitive when lowercase, sensitive if any uppercase
 set smartcase
+
+""" Disable delay for ESC
+set timeout
+set timeoutlen=50
+
+""" Dynamic cursor
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+""" Spellcheck
+hi clear SpellBad
+hi SpellBad cterm=underline
+hi SpellBad gui=undercurl
 
 """ Prefer whitespace to tabs
 set expandtab smarttab
@@ -55,15 +65,10 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 """ Unhighlight search
 nnoremap <Esc> :nohlsearch<CR>
 
-""" Buffer Navigation
-nnoremap <Leader>n :enew<CR>
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprev<CR>
-nnoremap <Leader>3 :b#<CR>
-nnoremap <Leader>a :only<CR>
-nnoremap <Leader>b :ls<CR>
-nnoremap Q :bd!<CR>
+""" Buffers Navigation
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>p :bp<CR>
 
 """ Spelling check switches
-nnoremap <Leader>l :set spell spelllang=en_us
+nnoremap <Leader>l :set spell spelllang=en_us,ru_ru
 nnoremap <Leader><S-l> :set nospell<CR>
