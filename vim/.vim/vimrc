@@ -18,6 +18,8 @@ set shiftwidth=4
 set softtabstop=0
 set expandtab smarttab
 
+set fillchars+=vert:│
+
 set list
 set listchars=
 set listchars+=tab:»\ 
@@ -32,9 +34,15 @@ let &t_EI = "\e[2 q"
 
 "" Highlight
 highlight LineNr ctermfg=darkgrey
-highlight StatusLine ctermbg=none cterm=bold
 highlight MatchParen ctermbg=none cterm=bold
 highlight WildMenu ctermfg=black ctermbg=white
+
+highlight clear StatusLineNC
+highlight StatusLine ctermbg=none cterm=bold
+highlight StatusLineNC ctermbg=none ctermfg=gray
+
+highlight clear VertSplit
+highlight VertSplit ctermfg=white ctermbg=none
 
 highlight Pmenu ctermbg=black ctermfg=white
 highlight PmenuSel ctermbg=gray ctermfg=black
