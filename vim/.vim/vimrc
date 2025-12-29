@@ -49,6 +49,7 @@ highlight PmenuSel ctermbg=gray ctermfg=black
 
 highlight clear SpellBad
 highlight SpellBad cterm=underline
+highlight SpellLocal ctermbg=darkgray cterm=underline
 
 
 "" Keybinds
