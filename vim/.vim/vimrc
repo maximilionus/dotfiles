@@ -62,10 +62,6 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 """ Unhighlight search
 nnoremap <Esc> :nohlsearch<CR>
 
-""" Buffers Navigation
-nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>p :bp<CR>
-
 """ Spelling check switches
 nnoremap <Leader>l :set spell spelllang=en_us,ru_ru
 nnoremap <Leader><S-l> :set nospell<CR>
