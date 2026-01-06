@@ -12,6 +12,8 @@ def_key "j"
     scroll_down
 def_key "k"
     scroll_up
+def_key "ctrl-v"
+    select_item
 def_key "K"
     volume_up
 def_key "J"
