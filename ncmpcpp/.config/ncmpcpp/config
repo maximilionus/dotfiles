@@ -1,5 +1,5 @@
 ncmpcpp_directory = ~/.local/share/ncmpcpp
-mpd_music_dir = ~/Music
+mpd_music_dir = ~/Music/Collection
 
 # General
 song_columns_list_format = (20)[white]{a} (6f)[blue]{NE} (50)[white]{t|f:Title} (20)[blue]{b} (7f)[white]{l}
