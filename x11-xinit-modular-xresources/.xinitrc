@@ -6,13 +6,12 @@ xrdb="xrdb"
 xinitdir="/etc/X11/xinit"
 xmodmap="xmodmap"
 
+userxinitd="$HOME/.config/xinitd"
 userresources="$HOME/.Xresources"
 userresourcesd="$HOME/.config/xresourcesd"
 usermodmap="$HOME/.Xmodmap"
 sysresources="$xinitdir/.Xresources"
 sysmodmap="$xinitdir/.Xmodmap"
-
-# merge in defaults and keymaps
 
 if [ -f "$sysresources" ]; then
     if [ -x /usr/bin/cpp ] ; then
@@ -50,9 +49,16 @@ fi
 
 if [ -d "$xinitdir"/xinitrc.d ] ; then
     for f in "$xinitdir/xinitrc.d"/?*.sh ; do
-            [ -x "$f" ] && . "$f"
+        [ -x "$f" ] && . "$f"
     done
     unset f
 fi
-
-exec i3
+if [ -d "$userxinitd" ] ; then
+    for f in "$userxinitd"/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+else
+    echo "User directives are missing in $userxinitd, nothing to run." >2
+    exit 1
+fi
