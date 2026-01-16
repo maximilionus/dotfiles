@@ -33,7 +33,7 @@ let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
 "" Highlight
-highlight LineNr ctermfg=darkgrey
+highlight LineNr ctermfg=gray
 highlight MatchParen ctermbg=none cterm=bold
 highlight WildMenu ctermfg=black ctermbg=white
 
