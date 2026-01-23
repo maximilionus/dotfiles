@@ -1,0 +1,56 @@
+URxvt.termName: rxvt
+URxvt.font: xft:monospace:size=12:style=Regular
+URxvt.depth: 32
+URxvt.saveLines: 10000
+URxvt.geometry: 400x400
+
+URxvt.scrollBar: false
+!URxvt.scrollstyle: plain
+!URxvt.scrollBar_right: true
+!URxvt.scrollBar_floating: true
+!URxvt.scrollColor: #484848
+
+URxvt.perl-ext-common: default,matcher
+
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+URxvt.foreground: #ffffff
+URxvt.background: #0c0c0c
+
+! Black
+URxvt*color0:  #484f58
+URxvt*color8:  #6e7681
+
+! Red
+URxvt*color1:  #ff7b72
+URxvt*color9:  #ffa198
+
+! Green
+URxvt*color2:  #3fb950
+URxvt*color10: #56d364
+
+! Yellow
+URxvt*color3:  #d29922
+URxvt*color11: #e3b341
+
+! Blue
+URxvt*color4:  #58a6ff
+URxvt*color12: #79c0ff
+
+! Magenta
+URxvt*color5:  #bc8cff
+URxvt*color13: #d2a8ff
+
+! Cyan
+URxvt*color6:  #39c5cf
+URxvt*color14: #56d4dd
+
+! White
+URxvt*color7:  #b1bac4
+URxvt*color15: #ffffff
