@@ -1,6 +1,6 @@
-# User profile.d
-if [ -d "$HOME/.config/profile.d" ]; then
-    for file in "$HOME/.config/profile.d/"*.sh(N); do
+# User profiled
+if [ -d "$HOME/.config/profiled" ]; then
+    for file in "$HOME/.config/profiled/"*.sh(N); do
         source "$file"
     done
 fi

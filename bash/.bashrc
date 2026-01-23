@@ -43,8 +43,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -d "$HOME/.config/profile.d" ]; then
-    for file in "$HOME/.config/profile.d/"*.sh; do
+if [ -d "$HOME/.config/profiled" ]; then
+    for file in "$HOME/.config/profiled/"*.sh; do
         source "$file"
     done
 fi
