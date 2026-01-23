@@ -26,18 +26,7 @@ shopt -s checkwinsize
 # files and zero or more directories and subdirectories.
 #shopt -s globstar
 
-if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    color_prompt=yes
-else
-    color_prompt=
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1="\[\033[01;34m\]\w\n\[\033[00m\]\$ "
-else
-    PS1="\w\n\$ "
-fi
-unset color_prompt
+PS1="\[\033[01;34m\]\w\n\[\033[00m\]\$ "
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
