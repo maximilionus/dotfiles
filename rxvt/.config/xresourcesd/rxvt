@@ -1,5 +1,10 @@
 URxvt.termName: rxvt
-URxvt.font: xft:monospace:size=12:style=Regular
+URxvt.font: xft:monospace:size=12:style=Regular,\
+            xft:Noto Sans CJK JP:style=Regular,\
+            xft:Noto Sans CJK HK:style=Regular,\
+            xft:Noto Sans CJK KR:style=Regular,\
+            xft:Noto Sans CJK SC:style=Regular,\
+            xft:Noto Sans CJK TC:style=Regular
 URxvt.depth: 32
 URxvt.saveLines: 10000
 URxvt.geometry: 400x400
