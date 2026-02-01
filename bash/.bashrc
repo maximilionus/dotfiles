@@ -6,9 +6,6 @@ esac
 
 set -o vi
 
-# Extended pattern matching
-shopt -s globstar
-
 # Don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
@@ -21,10 +18,6 @@ HISTFILESIZE=2000
 # check the window size after each command and, if necessary, update the values
 # of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will match all
-# files and zero or more directories and subdirectories.
-#shopt -s globstar
 
 PS1="\[\033[01;34m\]\w\n\[\033[00m\]\$ "
 
