@@ -15,6 +15,10 @@ URxvt.scrollBar: false
 !URxvt.scrollBar_floating: true
 !URxvt.scrollColor: #484848
 
+URxvt.scrollTtyOutput:   False
+URxvt.scrollWithBuffer:  True
+URxvt.scrollTtyKeypress: True
+
 URxvt.perl-ext-common: default,matcher
 
 URxvt.url-launcher: /usr/bin/xdg-open
