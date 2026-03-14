@@ -70,29 +70,40 @@ nnoremap <Leader><S-l> :set nospell<CR>
 
 
 " Features
+function! GetVisualSelection() abort
+    let l = getline("'<", "'>")
+    let l[-1] = l[-1][: col("'>")-1]
+    let l[0]  = l[0][col("'<")-1 :]
+    return join(l, "\n")
+endfunction
+
 "" Cross-platform clipboard without '+clipboard' dependency
-function! ClipCopy(text) abort
+function! ClipSet(text) abort
     if executable('wl-copy')
         call system('wl-copy', a:text)
     elseif executable('xclip')
         call system('xclip -selection clipboard', a:text)
     elseif executable('termux-clipboard-set')
         call system('termux-clipboard-set', a:text)
+    elseif !empty($TMUX)
+        call system('tmux load-buffer -', a:text)
     else
         echoerr 'No clipboard tool found'
     endif
 endfunction
 
-function! ClipPaste() abort
+function! ClipGet() abort
     if executable('wl-paste')
         return system('wl-paste --no-newline')
     elseif executable('xclip')
         return system('xclip -selection clipboard -o')
     elseif executable('termux-clipboard-get')
         return system('termux-clipboard-get')
+    elseif !empty($TMUX)
+        return system('tmux show-buffer')
     endif
     return ''
 endfunction
 
-xnoremap <silent> <Leader>y :<C-u>call ClipCopy(join(getline("'<","'>"), "\n"))<CR>
-nnoremap <silent> <Leader>p :call append(line('.'), split(ClipPaste(), "\n"))<CR>
+xnoremap <silent> <Leader>y :<C-u>call ClipSet(GetVisualSelection())<CR>
+nnoremap <silent> <Leader>p :put =ClipGet()<CR>
