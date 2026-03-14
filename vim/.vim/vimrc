@@ -9,6 +9,7 @@ set hlsearch
 set smartcase
 set autoindent
 set textwidth=80
+set formatoptions-=t
 set laststatus=2
 set viminfo="NONE"
 set relativenumber
