@@ -20,7 +20,7 @@ zstyle ':vcs_info:*' unstagedstr ' %F{yellow}?%f'
 
 precmd() {
     vcs_info
-    print -P '%B%~%b ${vcs_info_msg_0_}'
+    print -P '%F{blue}%B%~%b%f ${vcs_info_msg_0_}'
 }
 
 PROMPT='%(!.#.$) '
@@ -51,14 +51,15 @@ bindkey "^[[1;3D" backward-word
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
-bindkey -M vicmd '/' history-incremental-search-backward
+bindkey '^R' history-incremental-search-backward
+bindkey '^R' history-incremental-pattern-search-backward
 
 # Aliases
 alias ll="ls -lah"
 alias lsa="ls -ah"
 
 # Plugin manager and plugins
-# ! Should load before 'compinit'
+# Should load before 'compinit'!
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] \
@@ -66,8 +67,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
 
 # Completion
 autoload -Uz compinit && compinit
