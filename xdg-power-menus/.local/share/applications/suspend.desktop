@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Suspend
+Keywords=suspend;sleep;
+Exec=systemctl suspend
+Icon=system-shutdown-symbolic
+Type=Application
+Categories=System;
