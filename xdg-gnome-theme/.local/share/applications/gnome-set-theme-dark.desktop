@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Switch to Dark theme
+Comment=Set GNOME to dark mode
+Exec=sh -c 'gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"; gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"'
+Icon=preferences-desktop-theme
+Terminal=false
+Type=Application
+Categories=Settings;
