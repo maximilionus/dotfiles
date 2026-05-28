@@ -46,4 +46,5 @@ function colorscheme_set_xdg()
 end
 
 
-colorscheme_set_xdg()
+colorscheme_set_dark()
+-- colorscheme_set_xdg()
