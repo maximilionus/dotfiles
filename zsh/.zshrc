@@ -9,18 +9,8 @@ fi
 setopt autocd beep extendedglob globdots nomatch notify
 
 # Prompt
-setopt prompt_subst
-autoload -Uz vcs_info
-
-zstyle ':vcs_info:git*' formats " %F{blue}%b%f %m%u%c %a "
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr ' %F{green}✚%f'
-zstyle ':vcs_info:*' unstagedstr ' %F{yellow}?%f'
-
 precmd() {
-    vcs_info
-    print -P '%F{blue}%B%~%b%f ${vcs_info_msg_0_}'
+    print -P '%F{blue}%B%~%b%f'
 }
 
 PROMPT='%(!.#.$) '
