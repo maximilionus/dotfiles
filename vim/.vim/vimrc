@@ -6,6 +6,7 @@ set term=xterm-256color
 syntax on
 set hidden
 set hlsearch
+set incsearch
 set smartcase
 set autoindent
 set textwidth=80
