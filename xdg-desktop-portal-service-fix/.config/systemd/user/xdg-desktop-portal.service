@@ -1,0 +1,14 @@
+# Fix graphical.target dependency issue.
+# https://github.com/flatpak/xdg-desktop-portal/issues/1983
+[Unit]
+Description=Portal service
+PartOf=graphical-session.target
+Requires=dbus.service
+After=dbus.service
+After=graphical-session.target
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.portal.Desktop
+ExecStart=/usr/lib/xdg-desktop-portal
+Slice=session.slice
