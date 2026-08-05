@@ -1,6 +1,6 @@
 # Modular RC
-if [ -d "$HOME/.config/rc" ]; then
-    for file in "$HOME/.config/rc/"*.sh(N); do
+if [ -d "$HOME/.config/rc.d" ]; then
+    for file in "$HOME/.config/rc.d/"*.sh(N); do
         source "$file"
     done
 fi
