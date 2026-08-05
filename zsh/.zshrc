@@ -1,3 +1,10 @@
+# Modular RC
+if [ -d "$HOME/.config/rc" ]; then
+    for file in "$HOME/.config/rc/"*.sh(N); do
+        source "$file"
+    done
+fi
+
 # Basic options
 setopt autocd beep extendedglob globdots nomatch notify
 
