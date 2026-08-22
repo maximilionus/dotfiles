@@ -1,3 +1,16 @@
+# Modular RC
+if [ -d "$HOME/.config/shellrc.d" ]; then
+    for file in "$HOME/.config/shellrc.d/"*; do
+        source "$file"
+    done
+fi
+
+if [ -d /etc/shellrc.d ]; then
+    for file in /etc/shellrc.d/*; do
+        source "$file"
+    done
+fi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -23,12 +36,6 @@ PS1="\[\033[01;34m\]\w\n\[\033[00m\]\$ "
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
-fi
-
-if [ -d "$HOME/.config/profile.d" ]; then
-    for file in "$HOME/.config/profile.d/"*.sh; do
-        source "$file"
-    done
 fi
 
 # Programmable completion features 

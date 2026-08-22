@@ -1,6 +1,12 @@
 # Modular RC
-if [ -d "$HOME/.config/rc.d" ]; then
-    for file in "$HOME/.config/rc.d/"*.sh(N); do
+if [ -d "$HOME/.config/shellrc.d" ]; then
+    for file in "$HOME/.config/shellrc.d/"*.sh(N); do
+        source "$file"
+    done
+fi
+
+if [ -d /etc/shellrc.d ]; then
+    for file in /etc/shellrc.d/*.sh(N); do
         source "$file"
     done
 fi
