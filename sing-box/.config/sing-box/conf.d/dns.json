@@ -1,0 +1,17 @@
+{
+  "dns": {
+    "servers": [
+      {
+        "type": "tcp",
+        "tag": "google",
+        "detour": "proxy",
+        "server": "8.8.8.8"
+      },
+      {
+        "type": "local",
+        "tag": "local"
+      }
+    ],
+    "strategy": "ipv4_only"
+  }
+}

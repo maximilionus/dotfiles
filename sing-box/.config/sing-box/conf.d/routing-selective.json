@@ -1,0 +1,39 @@
+{
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "domain": [
+          "i.scdn.co",
+          "t.scdn.co",
+          "syncplay.pl"
+        ],
+        "outbound": "proxy"
+      },
+      {
+        "process_name": [
+          "Telegram",
+          "Discord"
+        ],
+        "outbound": "proxy"
+      },
+      {
+        "process_path": "/usr/lib/firefox/firefox",
+        "outbound": "proxy"
+      }
+    ],
+    "final": "direct",
+    "auto_detect_interface": true,
+    "default_domain_resolver": "local"
+  }
+}

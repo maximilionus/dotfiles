@@ -2,3 +2,4 @@ alacritty/.config/alacritty/theme_selected.toml
 neovim/.config/nvim/lazy-lock.json
 vim/.vim/spell/
 vim/.vim/.netrwhist
+sing-box/.config/sing-box/conf.d/proxy.json

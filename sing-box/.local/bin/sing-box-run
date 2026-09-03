@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+#
+# sing-box helper script, that will merge the required configurations and start
+# the foreground tunnel job.
+
+set -eo pipefail
+
+CONF_SOURCE_DIR="$HOME/.config/sing-box/conf.d"
+
+BLACKLIST=(
+    "$CONF_SOURCE_DIR/routing-global.json"
+    "$CONF_SOURCE_DIR/routing-selective.json"
+)
+
+cmd=(sudo sing-box run)
+
+if [[ ! -f "$CONF_SOURCE_DIR/proxy.json" ]]; then
+    cat << EOF > "$CONF_SOURCE_DIR/proxy.json"
+{
+  "outbounds": [
+    {
+      "tag": "proxy",
+    }
+  ]
+}
+EOF
+
+    echo "Proxy configuration not found."
+    echo "Open the generated file \"$CONF_SOURCE_DIR/proxy.json\" and fill the outbound."
+    exit 0
+fi
+
+for file in "$CONF_SOURCE_DIR"/*.json; do
+    [[ -f "$file" ]] || continue
+
+    if [[ " ${BLACKLIST[*]} " == *" $file "* ]]; then
+        continue
+    fi
+
+    cmd+=(-c "$file")
+done
+
+scope=$( basename "$1" )
+case $scope in
+    global)
+        cmd+=(-c "$CONF_SOURCE_DIR/routing-global.json")
+        printf "Mode: Global\n\n"
+        ;;
+    *|selective)
+        cmd+=(-c "$CONF_SOURCE_DIR/routing-selective.json")
+        printf "Mode: Selective\n\n"
+        ;;
+esac
+
+exec "${cmd[@]}"
