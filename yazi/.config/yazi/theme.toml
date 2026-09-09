@@ -1,0 +1,9 @@
+[icon]
+globs = []
+dirs = []
+files = []
+exts = []
+
+[status]
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
