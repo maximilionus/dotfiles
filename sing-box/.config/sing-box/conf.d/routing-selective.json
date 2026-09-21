@@ -16,6 +16,7 @@
         "domain": [
           "i.scdn.co",
           "t.scdn.co",
+          "image-scdn.cdn-gslb.spotify.com",
           "syncplay.pl"
         ],
         "outbound": "proxy"
