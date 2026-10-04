@@ -1,13 +1,7 @@
 [general]
 import = [
-    "~/.config/alacritty/theme_selected.toml"
+    "~/.config/alacritty/theme_dark.toml"
 ]
-
-[terminal.shell]
-program = "tmux"
-
-[env]
-ALACRITTY_TERM = "true"
 
 [font]
 size = 12
@@ -15,4 +9,3 @@ size = 12
 [window]
 dimensions = { columns = 120, lines = 45 }
 title = "Terminal"
-
