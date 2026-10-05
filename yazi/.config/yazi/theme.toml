@@ -3,6 +3,7 @@ globs = []
 dirs = []
 files = []
 exts = []
+conds = []
 
 [tabs]
 sep_inner = { open = "", close = "" }
