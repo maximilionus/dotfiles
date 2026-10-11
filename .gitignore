@@ -2,3 +2,4 @@ neovim/.config/nvim/lazy-lock.json
 vim/.vim/spell/
 vim/.vim/.netrwhist
 sing-box/.config/sing-box/conf.d
+openssh/.ssh
