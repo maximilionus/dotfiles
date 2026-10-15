@@ -35,6 +35,6 @@
     ],
     "final": "direct",
     "auto_detect_interface": true,
-    "default_domain_resolver": "local"
+    "default_domain_resolver": "remote-direct"
   }
 }

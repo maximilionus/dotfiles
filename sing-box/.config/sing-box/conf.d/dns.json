@@ -2,16 +2,23 @@
   "dns": {
     "servers": [
       {
-        "type": "udp",
-        "tag": "google",
-        "detour": "proxy",
-        "server": "8.8.8.8"
+        "type": "https",
+        "tag": "remote-proxy",
+        "server": "8.8.8.8",
+        "server_port": 443,
+        "path": "/dns-query",
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.google"
+        }
       },
       {
-        "type": "local",
-        "tag": "local"
+        "type": "udp",
+        "tag": "remote-direct",
+        "server": "8.8.8.8"
       }
     ],
-    "strategy": "ipv4_only"
+    "strategy": "ipv4_only",
+    "final": "remote-proxy"
   }
 }
