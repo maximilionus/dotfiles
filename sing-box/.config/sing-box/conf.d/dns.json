@@ -2,7 +2,7 @@
   "dns": {
     "servers": [
       {
-        "type": "tcp",
+        "type": "udp",
         "tag": "google",
         "detour": "proxy",
         "server": "8.8.8.8"
