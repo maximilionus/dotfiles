@@ -24,7 +24,8 @@
       {
         "process_name": [
           "Telegram",
-          "Discord"
+          "Discord",
+          "zerotier-one"
         ],
         "outbound": "proxy"
       },
